@@ -1,16 +1,16 @@
-# International-UI
+# International-UI (Joe Bacus)
 
 MVP Features Breakdown:
 
-- **Login Page/Modal** (Alvin) - After a user logs in, they'll be directed to a home page.
+- **Login Page/Modal** - After a user logs in, they'll be directed to a home page.
 
-- **Navigation** (Joe) - Navigation is present on all pages, _Users should know what page is active_ by clicking on a nav link and activating their tab.
+- **Navigation** - Navigation is present on all pages, _Users should know what page is active_ by clicking on a nav link and activating their tab.
 
-- **Home Page** (Alvin) - contains of list of students, laid out in a _grid format_.
+- **Home Page** - contains of list of students, laid out in a _grid format_.
 
-- **Single Child Add Page** (Joe) - Clicking add child brings up a form _(could be modal, could be its own page)_ where a user can add information about a new child. Form should include _name_, a place to upload an _optional picture_, _status at the school (student, past student, or visitor)_, _age_, _insurance card (Y/N)_ and _expiration date_, _birth certificate Y/N_, _special needs_, _child’s representative_ and _contact info_. Clicking submit adds the child to the homepage.
+- **Single Child Add Page** - Clicking add child brings up a form _(could be modal, could be its own page)_ where a user can add information about a new child. Form should include _name_, a place to upload an _optional picture_, _status at the school (student, past student, or visitor)_, _age_, _insurance card (Y/N)_ and _expiration date_, _birth certificate Y/N_, _special needs_, _child’s representative_ and _contact info_. Clicking submit adds the child to the homepage.
 
-- **Single Child View Page** (Joe) - Loads all information from the intake form about the child
+- **Single Child View Page** - Loads all information from the intake form about the child
 
 #### Rubrics for FE architect assessment:  https://docs.google.com/spreadsheets/d/1dL5UfyiHJ2qxWWfot-FTOeU3KUvZaixAKvkJ0uLuhL8/edit#gid=0
 

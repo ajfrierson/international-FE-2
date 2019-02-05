@@ -1,35 +1,26 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import './App.css';
 
-import authentication from './components/authentication/authentication';
-import HomePage from './components/HomePageComponents/HomePage';
-import NavBarContainer from './components/NavBarComponents/NavBarContainer';
-import ChildAddPage from './components/ChildComponents/ChildAddPage';
+import LoginPage from './containers/LoginPage';
+import HomePage from './containers/HomePage';
 
-class App extends React.Component {
-  state = {
-    loggedInUser: ''
-  };
+const App = props => {
+  return (
+    <div className='App'>
+      {props.loggedInUser ? <HomePage /> : <LoginPage />}
+    </div>
+  );
+};
 
-  render() {
-    return (
-      <div className='App'>
-        <Route
-          exact
-          path='/'
-          render={props => (
-            <>
-              <NavBarContainer />
-              <HomePage />
-            </>
-          )}
-        />
-        <Route path='/addchild' component={ChildAddPage} />
-      </div>
-    );
-  }
-}
+App.propTypes = {
+  loggedInUser: PropTypes.string
+};
 
-export default authentication(App);
+const mapStateToProps = state => {
+  return { loggedInUser: state.loginReducer.loggedInUser };
+};
+
+export default connect(mapStateToProps)(App);
