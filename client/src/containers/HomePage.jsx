@@ -6,6 +6,9 @@ import { getChildren, logout } from '../store/actions';
 
 import './HomePageStyles.css';
 
+import '../components/ChildGridItem';
+import ChildGridItem from '../components/ChildGridItem';
+
 class HomePage extends React.Component {
   static propTypes = {
     children: PropTypes.arrayOf(
@@ -37,10 +40,7 @@ class HomePage extends React.Component {
         </button>
         <div className='childrenGrid'>
           {this.props.children.map(child => (
-            <div className='childrenGrid__child' key={child.id}>
-              <h3>{child.name}</h3>
-              <div>Status: {child.status}</div>
-            </div>
+            <ChildGridItem key={child.id} child={child} />
           ))}
         </div>
       </>
