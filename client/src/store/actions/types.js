@@ -1,6 +1,5 @@
-// string constants here -> export to actions/index.js and to reducers
-
-// [examples]
-// export const SAMPLE_ACTION_START = "SAMPLE_ACTION_START"
-// export const SAMPLE_ACTION_START = "SAMPLE_ACTION_SUCCESS"
-// export const SAMPLE_ACTION_START = "SAMPLE_ACTION_FAILURE"
+export const HANDLE_TEXT_INPUT_CHANGE = 'HANDLE_TEXT_INPUT_CHANGE';
+export const LOGIN_START = 'LOGIN_START';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+export const LOGOUT = 'LOGOUT';
