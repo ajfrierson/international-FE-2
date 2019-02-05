@@ -1,0 +1,11 @@
+.childrenGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.childrenGrid__child {
+  padding: 10px;
+  border: 1px solid black;
+  margin: 50px 10%;
+}
