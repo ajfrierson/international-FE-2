@@ -1,35 +1,15 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
+import React, { Component } from 'react';
 
 import './App.css';
 
-import authentication from './components/authentication/authentication';
-import HomePage from './components/HomePageComponents/HomePage';
-import NavBarContainer from './components/NavBarComponents/NavBarContainer';
-import ChildAddPage from './components/ChildComponents/ChildAddPage';
-
-class App extends React.Component {
-  state = {
-    loggedInUser: ''
-  };
-
+class App extends Component {
   render() {
     return (
-      <div className='App'>
-        <Route
-          exact
-          path='/'
-          render={props => (
-            <>
-              <NavBarContainer />
-              <HomePage />
-            </>
-          )}
-        />
-        <Route path='/addchild' component={ChildAddPage} />
+      <div className="App">
+
       </div>
     );
   }
 }
 
-export default authentication(App);
+export default App;
