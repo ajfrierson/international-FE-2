@@ -2,17 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { getChildren, logout } from '../store/actions';
+import { getChildren } from '../store/actions';
 
-import './HomePageStyles.css';
-
-import '../components/ChildGridItem';
 import ChildGridItem from '../components/ChildGridItem';
 
-class HomePage extends React.Component {
+class HomeChildGrid extends React.Component {
   static propTypes = {
     children: PropTypes.arrayOf(
       PropTypes.shape({
+        id: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         status: PropTypes.string.isRequired,
         age: PropTypes.number.isRequired,
@@ -24,7 +22,7 @@ class HomePage extends React.Component {
       })
     ).isRequired,
     getChildren: PropTypes.func.isRequired,
-    logout: PropTypes.func.isRequired
+    changePage: PropTypes.func.isRequired
   };
 
   componentDidMount() {
@@ -33,17 +31,15 @@ class HomePage extends React.Component {
 
   render() {
     return (
-      <>
-        <div>Home</div>
-        <button type='button' onClick={this.props.logout}>
-          Log Out
-        </button>
-        <div className='childrenGrid'>
-          {this.props.children.map(child => (
-            <ChildGridItem key={child.id} child={child} />
-          ))}
-        </div>
-      </>
+      <div className='childrenGrid'>
+        {this.props.children.map(child => (
+          <ChildGridItem
+            key={child.id}
+            child={child}
+            changePage={this.props.changePage}
+          />
+        ))}
+      </div>
     );
   }
 }
@@ -57,7 +53,6 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   {
-    getChildren,
-    logout
+    getChildren
   }
-)(HomePage);
+)(HomeChildGrid);

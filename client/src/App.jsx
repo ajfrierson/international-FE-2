@@ -5,12 +5,12 @@ import { connect } from 'react-redux';
 import './App.css';
 
 import LoginPage from './containers/LoginPage';
-import HomePage from './containers/HomePage';
+import PageContainer from './containers/PageContainer';
 
 const App = props => {
   return (
     <div className='App'>
-      {props.loggedInUser ? <HomePage /> : <LoginPage />}
+      {props.loggedInUser ? <PageContainer /> : <LoginPage />}
     </div>
   );
 };

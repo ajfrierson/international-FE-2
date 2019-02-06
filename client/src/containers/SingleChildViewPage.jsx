@@ -1,21 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ChildGridItem = props => {
-  const changePage = e => props.changePage('SingleChildView', props.child);
-
+const SingleChildViewPage = props => {
   return (
-    <div className='childrenGrid__child' key={props.child.id}>
+    <div>
       <h3>{props.child.name}</h3>
       <div>Status: {props.child.status}</div>
-      <button type='button' onClick={changePage}>
-        View
-      </button>
     </div>
   );
 };
 
-ChildGridItem.propTypes = {
+SingleChildViewPage.propTypes = {
   child: PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
@@ -26,8 +21,7 @@ ChildGridItem.propTypes = {
     specialNeeds: PropTypes.string,
     representative: PropTypes.string,
     contactInfo: PropTypes.string
-  }).isRequired,
-  changePage: PropTypes.func.isRequired
+  }).isRequired
 };
 
-export default ChildGridItem;
+export default SingleChildViewPage;
