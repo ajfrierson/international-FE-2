@@ -29,6 +29,7 @@ const loginReducer = (state = initialState, action) => {
       };
     case LOGIN_SUCCESS:
       localStorage.setItem('loggedInUser', action.payload);
+      console.log(action.other);
       return {
         ...state,
         loggedInUser: action.payload,
