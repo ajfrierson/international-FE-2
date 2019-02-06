@@ -12,6 +12,7 @@ const LoginForm = props => {
 
   return (
     <form onSubmit={login}>
+      <h2>Login</h2>
       <div>
         <label htmlFor='loginUsername'>Username</label>
         <input
