@@ -26,7 +26,7 @@ const registrationReducer = (state = initialState, action) => {
         error: null
       };
     case REGISTER_SUCCESS:
-      console.log(action.payload);
+      console.log("Registration success: ", action.payload);
       return {
         ...state,
         registrationUsername: "",
@@ -34,7 +34,7 @@ const registrationReducer = (state = initialState, action) => {
         isRegisteringNewUser: false
       };
     case REGISTER_FAILURE:
-      console.log(action.payload);
+      console.log("Registration error: ", action.payload);
       return {
         ...state,
         isRegisteringNewUser: false,
