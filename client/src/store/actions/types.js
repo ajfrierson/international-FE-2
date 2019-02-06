@@ -1,6 +1,11 @@
 // General actions
 export const HANDLE_TEXT_INPUT_CHANGE = 'HANDLE_TEXT_INPUT_CHANGE';
 
+// registrationReducer actions
+export const REGISTER_START = 'REGISTER_START';
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+export const REGISTER_FAILURE = 'REGISTER_FAILURE';
+
 // loginReducer actions
 export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
