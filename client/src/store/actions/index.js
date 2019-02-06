@@ -3,6 +3,10 @@ import axios from 'axios';
 import {
   // General actions
   HANDLE_TEXT_INPUT_CHANGE,
+  // registrationReducer actions
+  REGISTER_START,
+  REGISTER_SUCCESS,
+  REGISTER_FAILURE,
   // loginReducer actions
   LOGIN_START,
   LOGIN_SUCCESS,
@@ -14,7 +18,7 @@ import {
   FETCH_CHILDREN_FAILURE
 } from './types';
 
-const baseURL = 'http://localhost:5000';
+const baseURL = 'https://buildweek-be.herokuapp.com/api';
 
 // General action definitions
 
@@ -22,15 +26,22 @@ export const handleTextInputChange = e => dispatch => {
   dispatch({ type: HANDLE_TEXT_INPUT_CHANGE, payload: e.currentTarget });
 };
 
+// registrationReducer action definitions
+
+export const registerNewUser = (username, password) => dispatch => {
+  dispatch({ type: REGISTER_START });
+  axios
+    .post(`${baseURL}/register`, { username, password })
+    .then(res => dispatch({ type: REGISTER_SUCCESS, payload: res.json }))
+    .catch(err => dispatch({ type: REGISTER_FAILURE, payload: err }));
+};
+
 // loginReducer action definitions
 
-export const login = (loginUsername, loginPassword) => dispatch => {
+export const login = (username, password) => dispatch => {
   dispatch({ type: LOGIN_START });
   axios
-    .post(`${baseURL}/api/users/login`, {
-      loginUsername,
-      loginPassword
-    })
+    .post(`${baseURL}/login`, { username, password })
     .then(res => dispatch({ type: LOGIN_SUCCESS, payload: res.data }))
     .catch(err => dispatch({ type: LOGIN_FAILURE, payload: err }));
 };
