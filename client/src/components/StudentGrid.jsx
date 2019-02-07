@@ -11,14 +11,7 @@ class StudentGrid extends React.Component {
     students: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        status: PropTypes.string.isRequired,
-        age: PropTypes.number.isRequired,
-        insuranceCard: PropTypes.string,
-        birthCertificateExpires: PropTypes.string,
-        specialNeeds: PropTypes.string,
-        representative: PropTypes.string,
-        contactInfo: PropTypes.string
+        name: PropTypes.string.isRequired
       })
     ).isRequired
   };
