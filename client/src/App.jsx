@@ -1,31 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Route } from 'react-router-dom';
 
 import './App.css';
 
 import SignInPage from './containers/SignInPage';
-import PageContainer from './containers/PageContainer';
+import AppPageContainer from './containers/AppPageContainer';
 
 const App = props => {
-  const { loggedInUser } = props
+  const { loggedInUser } = props;
 
-  return (
-    <div className='App'>
-      <Route
-        exact
-        path='/'
-        render={props =>
-          !console.log(loggedInUser) &&
-          loggedInUser ? (
-            <PageContainer {...props} />
-          ) : (
-            <SignInPage {...props} />
-          )
-        }
-      />
-    </div>
+  return loggedInUser ? (
+    <AppPageContainer {...props} />
+  ) : (
+    <SignInPage />
   );
 };
 

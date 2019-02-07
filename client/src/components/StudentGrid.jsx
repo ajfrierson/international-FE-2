@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { getChildren } from '../store/actions';
+import { getStudents } from '../store/actions';
 
-import ChildGridItem from '../components/ChildGridItem';
+import StudentGridItem from './StudentGridItem';
 
-class HomeChildGrid extends React.Component {
+class StudentGrid extends React.Component {
   static propTypes = {
-    children: PropTypes.arrayOf(
+    students: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
@@ -20,24 +20,18 @@ class HomeChildGrid extends React.Component {
         representative: PropTypes.string,
         contactInfo: PropTypes.string
       })
-    ).isRequired,
-    getChildren: PropTypes.func.isRequired,
-    changePage: PropTypes.func.isRequired
+    ).isRequired
   };
 
   componentDidMount() {
-    this.props.getChildren();
+    this.props.getStudents();
   }
 
   render() {
     return (
-      <div className='childrenGrid'>
-        {this.props.children.map(child => (
-          <ChildGridItem
-            key={child.id}
-            child={child}
-            changePage={this.props.changePage}
-          />
+      <div className='studentsGrid'>
+        {this.props.students.map(student => (
+          <StudentGridItem key={student.id} student={student} />
         ))}
       </div>
     );
@@ -46,13 +40,13 @@ class HomeChildGrid extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    children: state.childReducer.children
+    students: state.studentDataReducer.students
   };
 };
 
 export default connect(
   mapStateToProps,
   {
-    getChildren
+    getStudents
   }
-)(HomeChildGrid);
+)(StudentGrid);

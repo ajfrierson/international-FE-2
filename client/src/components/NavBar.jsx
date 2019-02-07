@@ -1,27 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 import { logout } from '../store/actions';
 
 const NavBar = props => {
   return (
     <nav>
-      <button type='button' onClick={e => props.changePage("Home")}>
-        Home
-      </button>
-      <button type='button' onClick={e => props.changePage("SingleChildAdd")}>
-        Add New Child
-      </button>
-      <button type='button' onClick={props.logout}>
+      <NavLink to='/'>Home</NavLink>
+      <NavLink to='/addNewStudent'>Add New Student</NavLink>
+      <NavLink to='/' onClick={props.logout}>
         Log Out
-      </button>
+      </NavLink>
     </nav>
   );
 };
 
 NavBar.propTypes = {
-  changePage: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired
 };
 

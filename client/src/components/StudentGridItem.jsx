@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SingleChildViewPage = props => {
+const StudentGridItem = props => {
   return (
-    <div>
-      <h3>{props.child.name}</h3>
-      <div>Status: {props.child.status}</div>
+    <div className='studentsGrid__student'>
+      <h3>{props.student.name}</h3>
+      <span>Status: </span>
+      <span>{props.student.status}</span>
     </div>
   );
 };
 
-SingleChildViewPage.propTypes = {
-  child: PropTypes.shape({
+StudentGridItem.propTypes = {
+  student: PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     status: PropTypes.string.isRequired,
@@ -21,7 +22,7 @@ SingleChildViewPage.propTypes = {
     specialNeeds: PropTypes.string,
     representative: PropTypes.string,
     contactInfo: PropTypes.string
-  }).isRequired
+  })
 };
 
-export default SingleChildViewPage;
+export default StudentGridItem;
