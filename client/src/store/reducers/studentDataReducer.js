@@ -9,7 +9,13 @@ import {
   ADD_STUDENT_FAILURE,
   FETCH_SINGLE_STUDENT_START,
   FETCH_SINGLE_STUDENT_SUCCESS,
-  FETCH_SINGLE_STUDENT_FAILURE
+  FETCH_SINGLE_STUDENT_FAILURE,
+  DELETE_STUDENT_START,
+  DELETE_STUDENT_SUCCESS,
+  DELETE_STUDENT_FAILURE,
+  UPDATE_STUDENT_START,
+  UPDATE_STUDENT_SUCCESS,
+  UPDATE_STUDENT_FAILURE
 } from '../actions/types';
 
 let initialState = {
@@ -26,6 +32,8 @@ let initialState = {
   isFetchingStudents: false,
   isAddingStudent: false,
   isFetchingSingleStudent: false,
+  isDeletingStudent: false,
+  isUpdatingStudent: false,
   error: null
 };
 
@@ -111,6 +119,25 @@ const studentDataReducer = (state = initialState, action) => {
         ...state,
         isFetchingSingleStudent: false,
         error: `Failed to get info of student with ID ${action.id}`
+      };
+    case DELETE_STUDENT_START:
+      return {
+        ...state,
+        isDeletingStudent: true,
+        error: null
+      };
+    case DELETE_STUDENT_SUCCESS:
+      return {
+        ...state,
+        students: action.payload,
+        isDeletingStudent: false
+      };
+    case DELETE_STUDENT_FAILURE:
+      console.log(action.payload);
+      return {
+        ...state,
+        isDeletingStudent: false,
+        error: `Failed to delete student with ID ${action.id}`
       };
     default:
       return state;

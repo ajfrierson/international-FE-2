@@ -26,7 +26,13 @@ import {
   ADD_STUDENT_FAILURE,
   FETCH_SINGLE_STUDENT_START,
   FETCH_SINGLE_STUDENT_SUCCESS,
-  FETCH_SINGLE_STUDENT_FAILURE
+  FETCH_SINGLE_STUDENT_FAILURE,
+  DELETE_STUDENT_START,
+  DELETE_STUDENT_SUCCESS,
+  DELETE_STUDENT_FAILURE,
+  UPDATE_STUDENT_START,
+  UPDATE_STUDENT_SUCCESS,
+  UPDATE_STUDENT_FAILURE
 } from './types';
 
 // const baseURL = 'https://buildweek-be.herokuapp.com/api';
@@ -93,4 +99,15 @@ export const getSingleStudent = id => dispatch => {
     .catch(err =>
       dispatch({ type: FETCH_SINGLE_STUDENT_FAILURE, payload: err, id })
     );
+};
+
+export const deleteStudent = id => dispatch => {
+  dispatch({ type: DELETE_STUDENT_START });
+  axios
+    .delete(`${baseURL}/students/${id}`)
+    .then(res => {
+      dispatch({ type: DELETE_STUDENT_SUCCESS, payload: res.data });
+      window.location.href = '/';
+    })
+    .catch(err => dispatch({ type: DELETE_STUDENT_FAILURE, payload: err, id }));
 };

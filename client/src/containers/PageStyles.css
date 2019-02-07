@@ -9,3 +9,15 @@
   border: 1px solid black;
   margin: 50px 10%;
 }
+
+.singleStudentViewField {
+
+}
+
+.singleStudentViewField__label {
+  font-weight: bold;
+}
+
+.singleStudentViewField__value {
+
+}
