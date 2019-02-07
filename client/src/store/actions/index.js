@@ -60,9 +60,7 @@ export const login = (username, password) => dispatch => {
   dispatch({ type: LOGIN_START });
   axios
     .post(`${baseURL}/login`, { username, password })
-    .then(res =>
-      dispatch({ type: LOGIN_SUCCESS, payload: username, other: res.data })
-    )
+    .then(res => dispatch({ type: LOGIN_SUCCESS, payload: res.data }))
     .catch(err => dispatch({ type: LOGIN_FAILURE, payload: err }));
 };
 
@@ -72,12 +70,19 @@ export const logout = () => dispatch => dispatch({ type: LOGOUT });
 
 export const getStudents = () => dispatch => {
   dispatch({ type: FETCH_STUDENTS_START });
+
+  const headers = {
+    Authorization: localStorage.getItem('token')
+  };
+
   axios
-    .get(`${baseURL}/students`)
+    .get(`${baseURL}/students`, { headers })
     .then(res =>
       dispatch({
         type: FETCH_STUDENTS_SUCCESS,
-        payload: res.data.sort((a, b) => (a > b ? 1 : -1))
+        payload: res.data.sort((a, b) =>
+          a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1
+        )
       })
     )
     .catch(err => dispatch({ type: FETCH_STUDENTS_FAILURE, payload: err }));
@@ -88,8 +93,13 @@ export const clearNewStudentInfo = () => dispatch =>
 
 export const addStudent = newStudent => dispatch => {
   dispatch({ type: ADD_STUDENT_START });
+
+  const headers = {
+    Authorization: localStorage.getItem('token')
+  };
+
   axios
-    .post(`${baseURL}/student`, { ...newStudent })
+    .post(`${baseURL}/student`, { ...newStudent }, { headers })
     .then(res => {
       dispatch({ type: ADD_STUDENT_SUCCESS, payload: res.data });
       window.location.href = '/';
@@ -99,8 +109,13 @@ export const addStudent = newStudent => dispatch => {
 
 export const getSingleStudent = id => dispatch => {
   dispatch({ type: FETCH_SINGLE_STUDENT_START });
+
+  const headers = {
+    Authorization: localStorage.getItem('token')
+  };
+
   axios
-    .get(`${baseURL}/students/${+id}`)
+    .get(`${baseURL}/students/${+id}`, { headers })
     .then(res =>
       dispatch({ type: FETCH_SINGLE_STUDENT_SUCCESS, payload: res.data[0] })
     )
@@ -111,8 +126,13 @@ export const getSingleStudent = id => dispatch => {
 
 export const deleteStudent = id => dispatch => {
   dispatch({ type: DELETE_STUDENT_START });
+
+  const headers = {
+    Authorization: localStorage.getItem('token')
+  };
+
   axios
-    .delete(`${baseURL}/students/${id}`)
+    .delete(`${baseURL}/students/${id}`, { headers })
     .then(res => {
       dispatch({ type: DELETE_STUDENT_SUCCESS, payload: res.data });
       window.location.href = '/';
@@ -131,8 +151,12 @@ export const updateStudent = newStudentInfo => dispatch => {
   dispatch({ type: UPDATE_STUDENT_START });
 
   const { id } = newStudentInfo;
+  const headers = {
+    Authorization: localStorage.getItem('token')
+  };
+
   axios
-    .put(`${baseURL}/students/${id}`, newStudentInfo)
+    .put(`${baseURL}/students/${id}`, newStudentInfo, { headers })
     .then(res =>
       dispatch({
         type: UPDATE_STUDENT_SUCCESS,

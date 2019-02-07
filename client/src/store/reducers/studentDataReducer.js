@@ -21,6 +21,8 @@ import {
 
 let initialState = {
   students: [],
+  studentsPerPage: 2,
+  maxPageNumber: 0,
   currentViewedStudent: null,
   newStudentName: '',
   newStudentStatus: '',
@@ -55,6 +57,7 @@ const studentDataReducer = (state = initialState, action) => {
       return {
         ...state,
         students: action.payload,
+        maxPageNumber: Math.ceil(action.payload.length) / state.studentsPerPage,
         isFetchingStudents: false
       };
     case FETCH_STUDENTS_FAILURE:
@@ -131,6 +134,7 @@ const studentDataReducer = (state = initialState, action) => {
       return {
         ...state,
         students: action.payload,
+        maxPageNumber: Math.ceil(state.students.length) / state.studentsPerPage,
         isDeletingStudent: false
       };
     case DELETE_STUDENT_FAILURE:
@@ -146,11 +150,11 @@ const studentDataReducer = (state = initialState, action) => {
         newStudentName: action.payload.name,
         newStudentStatus: action.payload.status,
         newStudentAge: action.payload.age,
-        newStudentInsuranceExpiry: action.payload.insuranceCardexpires || "",
-        newStudentBirthCert: action.payload.birthcertificate || "",
+        newStudentInsuranceExpiry: action.payload.insuranceCardexpires || '',
+        newStudentBirthCert: action.payload.birthcertificate || '',
         newStudentSpecialNeeds: action.payload.specialneeds,
         newStudentRepresenative: action.payload.represenative,
-        newStudentContactInfo: action.payload.contactinfo || ""
+        newStudentContactInfo: action.payload.contactinfo || ''
       };
     case UPDATE_STUDENT_START:
       return {

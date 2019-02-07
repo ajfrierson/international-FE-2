@@ -7,7 +7,7 @@ import {
 } from '../actions/types';
 
 let initialState = {
-  loggedInUser: localStorage.getItem('loggedInUser') || null,
+  loggedInUser: localStorage.getItem('token') || null,
   loginUsername: '',
   loginPassword: '',
   isLoggingIn: false,
@@ -28,11 +28,11 @@ const loginReducer = (state = initialState, action) => {
         error: null
       };
     case LOGIN_SUCCESS:
-      localStorage.setItem('loggedInUser', action.payload);
-      console.log(action.other);
+      localStorage.setItem('token', action.payload.token);
+      console.log(action.payload.message);
       return {
         ...state,
-        loggedInUser: action.payload,
+        loggedInUser: action.payload.token,
         isLoggingIn: false
       };
     case LOGIN_FAILURE:
@@ -43,7 +43,7 @@ const loginReducer = (state = initialState, action) => {
         error: 'Login failure'
       };
     case LOGOUT:
-      localStorage.setItem('loggedInUser', null);
+      localStorage.setItem('token', "");
       return {
         ...state,
         loggedInUser: null

@@ -8,9 +8,11 @@ import SignInPage from './containers/SignInPage';
 import AppPageContainer from './containers/AppPageContainer';
 
 const App = props => {
-  const { loggedInUser } = props;
-
-  return loggedInUser ? <AppPageContainer {...props} /> : <SignInPage />;
+  return props.loggedInUser ? (
+    <AppPageContainer {...props} />
+  ) : (
+    <SignInPage />
+  );
 };
 
 App.propTypes = {

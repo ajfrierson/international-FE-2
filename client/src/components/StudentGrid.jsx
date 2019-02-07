@@ -6,7 +6,6 @@ import { getStudents } from '../store/actions';
 
 import StudentGridItem from './StudentGridItem';
 
-const studentsPerPage = 2;
 class StudentGrid extends React.Component {
   static propTypes = {
     students: PropTypes.arrayOf(
@@ -15,18 +14,18 @@ class StudentGrid extends React.Component {
         name: PropTypes.string.isRequired,
         status: PropTypes.string.isRequired
       })
-    )
+    ),
+    studentsPerPage: PropTypes.number,
+    maxPageNumber: PropTypes.number
   };
 
   state = {
-    pageNumber: this.props.match.params.pageNum || 1,
-    maxPageNumber: Math.ceil(this.props.students.length)
+    pageNumber: +this.props.match.params.pageNum || 1
   };
 
   componentDidMount() {
     this.props.getStudents();
-    this.setState({maxPageNumber: Math.ceil(this.props.students.length) / studentsPerPage});
-    console.log(this.props.match.params.pageNum);
+    console.log("num:", this.state.pageNumber, "MAX", this.props.maxPageNumber);
   }
 
   prevPage = e => {
@@ -40,22 +39,28 @@ class StudentGrid extends React.Component {
   };
 
   nextPage = e => {
-    const pageNumber = this.state.pageNumber < this.state.maxPageNumber ? +this.state.pageNumber + 1 : this.state.pageNumber;
+    const pageNumber =
+      this.state.pageNumber < this.props.maxPageNumber
+        ? +this.state.pageNumber + 1
+        : this.state.pageNumber;
     this.setState({ pageNumber }, () =>
       this.props.history.push(`/students/${pageNumber}`)
     );
   };
 
   render() {
-    const fromItem = studentsPerPage * (this.state.pageNumber - 1), toItem = fromItem + studentsPerPage;
+    const fromItem = this.props.studentsPerPage * (this.state.pageNumber - 1),
+      toItem = fromItem + this.props.studentsPerPage;
 
     return (
       <>
         <div className='studentsGrid'>
           {this.props.students &&
-            this.props.students.slice(fromItem, toItem).map(student => (
-              <StudentGridItem key={student.id} student={student} />
-            ))}
+            this.props.students
+              .slice(fromItem, toItem)
+              .map(student => (
+                <StudentGridItem key={student.id} student={student} />
+              ))}
         </div>
         <div>
           <button type='button' onClick={this.prevPage}>
@@ -72,7 +77,9 @@ class StudentGrid extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    students: state.studentDataReducer.students
+    students: state.studentDataReducer.students,
+    studentsPerPage: state.studentDataReducer.studentsPerPage,
+    maxPageNumber: state.studentDataReducer.maxPageNumber
   };
 };
 
