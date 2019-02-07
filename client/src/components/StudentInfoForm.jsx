@@ -12,14 +12,14 @@ const StudentInfoForm = props => {
   const addStudent = e => {
     e.preventDefault();
     props.addStudent({
-      newStudentName: props.newStudentName,
-      newStudentStatus: props.newStudentStatus,
-      newStudentAge: props.newStudentAge,
-      newStudentInsuranceExpiry: props.newStudentInsuranceExpiry,
-      newStudentBirthCert: props.newStudentBirthCert,
-      newStudentSpecialNeeds: props.newStudentSpecialNeeds,
-      newStudentRepresentative: props.newStudentRepresentative,
-      newStudentContactInfo: props.newStudentContactInfo
+      name: props.newStudentName,
+      status: props.newStudentStatus,
+      age: props.newStudentAge,
+      insuranceCardexpires: props.newStudentInsuranceExpiry,
+      birthcertificate: props.newStudentBirthCert,
+      specialneeds: props.newStudentSpecialNeeds,
+      represenative: props.newStudentRepresentative,
+      contactInfo: props.newStudentContactInfo
     });
   };
 

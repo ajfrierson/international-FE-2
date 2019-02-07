@@ -74,7 +74,6 @@ const studentDataReducer = (state = initialState, action) => {
         error: null
       };
     case ADD_STUDENT_SUCCESS:
-      console.log('NEW STUDENT: ', action.payload);
       return {
         ...state,
         isAddingStudent: false,
