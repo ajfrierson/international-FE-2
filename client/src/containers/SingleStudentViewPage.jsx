@@ -6,7 +6,7 @@ import {
   getSingleStudent,
   deleteStudent,
   populateFormForStudentUpdate
-} from '../store/actions';
+} from '../store/actions/studentDataActions';
 
 import StudentInfoForm from '../components/StudentInfoForm';
 import StudentFullInfoDisplay from '../components/StudentFullInfoDisplay';

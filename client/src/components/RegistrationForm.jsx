@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { handleTextInputChange, registerNewUser } from '../store/actions';
+import { handleTextInputChange } from '../store/actions';
+import { registerNewUser } from '../store/actions/registrationActions';
 
 const RegistrationForm = props => {
   const registerNewUser = e => {

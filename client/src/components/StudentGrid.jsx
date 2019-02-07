@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { getStudents } from '../store/actions';
+import { getStudents } from '../store/actions/studentDataActions';
 
 import StudentGridItem from './StudentGridItem';
 
@@ -25,7 +25,7 @@ class StudentGrid extends React.Component {
 
   componentDidMount() {
     this.props.getStudents();
-    console.log("num:", this.state.pageNumber, "MAX", this.props.maxPageNumber);
+    console.log('num:', this.state.pageNumber, 'MAX', this.props.maxPageNumber);
   }
 
   prevPage = e => {

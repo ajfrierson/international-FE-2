@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-import { logout } from '../store/actions';
+import { logout } from '../store/actions/loginActions';
 
 import './NavStyles.css';
 

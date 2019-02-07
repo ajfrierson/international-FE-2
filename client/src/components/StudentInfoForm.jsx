@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { handleTextInputChange } from '../store/actions';
 import {
-  handleTextInputChange,
   clearNewStudentInfo,
   addStudent,
   updateStudent
-} from '../store/actions';
+} from '../store/actions/studentDataActions';
 
 class StudentInfoForm extends React.Component {
   static propTypes = {
