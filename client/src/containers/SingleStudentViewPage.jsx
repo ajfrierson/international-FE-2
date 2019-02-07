@@ -2,7 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { getSingleStudent, deleteStudent } from '../store/actions';
+import {
+  getSingleStudent,
+  deleteStudent,
+  populateFormForStudentUpdate
+} from '../store/actions';
+
+import StudentInfoForm from '../components/StudentInfoForm';
+import StudentFullInfoDisplay from '../components/StudentFullInfoDisplay';
 
 class SingleStudentViewPage extends React.Component {
   static propTypes = {
@@ -18,11 +25,20 @@ class SingleStudentViewPage extends React.Component {
       contactinfo: PropTypes.string
     }),
     getSingleStudent: PropTypes.func.isRequired,
-    deleteStudent: PropTypes.func.isRequired
+    deleteStudent: PropTypes.func.isRequired,
+    populateFormForStudentUpdate: PropTypes.func.isRequired
+  };
+
+  state = {
+    updateMode: false
   };
 
   componentDidMount() {
     this.props.getSingleStudent(this.props.match.params.id);
+  }
+
+  componentWillUnmount() {
+    this.setState({ updateMode: false });
   }
 
   deleteStudent = e => {
@@ -37,70 +53,42 @@ class SingleStudentViewPage extends React.Component {
     }
   };
 
+  populateFormForStudentUpdate() {
+    this.props.populateFormForStudentUpdate(this.props.currentViewedStudent);
+  }
+
+  toggleUpdateMode = e => {
+    const toggledUpdateMode = !this.state.updateMode;
+    this.setState(
+      {
+        updateMode: toggledUpdateMode
+      },
+      () => toggledUpdateMode && this.populateFormForStudentUpdate()
+    );
+  };
+
   render() {
     return (
       <div>
-        <h3>
-          {this.props.currentViewedStudent &&
-            this.props.currentViewedStudent.name}
-        </h3>
         <div>
-          <span className='singleStudentViewField__label'>Status: </span>
-          <span className='singleStudentViewField__value'>
+          <h3>
             {this.props.currentViewedStudent &&
-              this.props.currentViewedStudent.status}
-          </span>
+              this.props.currentViewedStudent.name}
+          </h3>
+          <button onClick={this.toggleUpdateMode}>
+            {this.state.updateMode ? 'Cancel Edit' : 'Edit info'}
+          </button>
         </div>
-        <div>
-          <span className='singleStudentViewField__label'>Age: </span>
-          <span className='singleStudentViewField__value'>
-            {this.props.currentViewedStudent &&
-              this.props.currentViewedStudent.age}
-          </span>
-        </div>
-        <div>
-          <span className='singleStudentViewField__label'>
-            Insurance card expiry date:{' '}
-          </span>
-          <span className='singleStudentViewField__value'>
-            {this.props.currentViewedStudent &&
-              (this.props.currentViewedStudent.insuranceCardexpires || 'N/A')}
-          </span>
-        </div>
-        <div>
-          <span className='singleStudentViewField__label'>
-            Birth certificate:{' '}
-          </span>
-          <span className='singleStudentViewField__value'>
-            {this.props.currentViewedStudent &&
-              (this.props.currentViewedStudent.birthcertificate || 'N/A')}
-          </span>
-        </div>
-        <div>
-          <span className='singleStudentViewField__label'>Special needs: </span>
-          <span className='singleStudentViewField__value'>
-            {this.props.currentViewedStudent &&
-              this.props.currentViewedStudent.specialneeds}
-          </span>
-        </div>
-        <div>
-          <span className='singleStudentViewField__label'>
-            Student's representative:{' '}
-          </span>
-          <span className='singleStudentViewField__value'>
-            {this.props.currentViewedStudent &&
-              this.props.currentViewedStudent.representative}
-          </span>
-        </div>
-        <div>
-          <span className='singleStudentViewField__label'>
-            Contact information:{' '}
-          </span>
-          <span className='singleStudentViewField__value'>
-            {this.props.currentViewedStudent &&
-              (this.props.currentViewedStudent.contactinfo || 'N/A')}
-          </span>
-        </div>
+        {this.state.updateMode ? (
+          <StudentInfoForm
+            method='PUT'
+            id={this.props.currentViewedStudent.id}
+          />
+        ) : (
+          <StudentFullInfoDisplay
+            currentViewedStudent={this.props.currentViewedStudent}
+          />
+        )}
         <div>
           <button type='button' onClick={this.deleteStudent}>
             Delete Student
@@ -121,6 +109,7 @@ export default connect(
   mapStateToProps,
   {
     getSingleStudent,
-    deleteStudent
+    deleteStudent,
+    populateFormForStudentUpdate
   }
 )(SingleStudentViewPage);

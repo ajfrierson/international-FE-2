@@ -6,7 +6,7 @@ const SingleStudentAddPage = props => {
   return (
     <>
       <h2>New Student</h2>
-      <StudentInfoForm />
+      <StudentInfoForm method='POST' id={null} />
     </>
   );
 };

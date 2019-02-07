@@ -11,9 +11,10 @@ class StudentGrid extends React.Component {
     students: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired
+        name: PropTypes.string.isRequired,
+        status: PropTypes.string.isRequired
       })
-    ).isRequired
+    )
   };
 
   componentDidMount() {
@@ -23,9 +24,10 @@ class StudentGrid extends React.Component {
   render() {
     return (
       <div className='studentsGrid'>
-        {this.props.students.map(student => (
-          <StudentGridItem key={student.id} student={student} />
-        ))}
+        {this.props.students &&
+          this.props.students.map(student => (
+            <StudentGridItem key={student.id} student={student} />
+          ))}
       </div>
     );
   }

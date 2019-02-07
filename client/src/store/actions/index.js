@@ -30,6 +30,7 @@ import {
   DELETE_STUDENT_START,
   DELETE_STUDENT_SUCCESS,
   DELETE_STUDENT_FAILURE,
+  POPULATE_FORM_FOR_STUDENT_UPDATE,
   UPDATE_STUDENT_START,
   UPDATE_STUDENT_SUCCESS,
   UPDATE_STUDENT_FAILURE
@@ -85,7 +86,10 @@ export const addStudent = newStudent => dispatch => {
   dispatch({ type: ADD_STUDENT_START });
   axios
     .post(`${baseURL}/student`, { ...newStudent })
-    .then(res => dispatch({ type: ADD_STUDENT_SUCCESS, payload: res.data }))
+    .then(res => {
+      dispatch({ type: ADD_STUDENT_SUCCESS, payload: res.data });
+      window.location.href = '/';
+    })
     .catch(err => dispatch({ type: ADD_STUDENT_FAILURE, payload: err }));
 };
 
@@ -110,4 +114,29 @@ export const deleteStudent = id => dispatch => {
       window.location.href = '/';
     })
     .catch(err => dispatch({ type: DELETE_STUDENT_FAILURE, payload: err, id }));
+};
+
+export const populateFormForStudentUpdate = currentViewedStudent => dispatch => {
+  dispatch({
+    type: POPULATE_FORM_FOR_STUDENT_UPDATE,
+    payload: currentViewedStudent
+  });
+};
+
+export const updateStudent = newStudentInfo => dispatch => {
+  dispatch({ type: UPDATE_STUDENT_START });
+
+  const { id } = newStudentInfo;
+  axios
+    .put(`${baseURL}/students/${id}`, newStudentInfo)
+    .then(res =>
+      dispatch({
+        type: UPDATE_STUDENT_SUCCESS,
+        payload: {
+          updatedStudentList: res.data,
+          newStudentInfo
+        }
+      })
+    )
+    .catch(err => dispatch({ type: UPDATE_STUDENT_FAILURE, payload: err, id }));
 };

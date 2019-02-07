@@ -23,7 +23,7 @@ let students = [
     age: '6',
     insuranceCardexpires: '54DSF5',
     birthcertificate: null,
-    specialneeds: null,
+    specialneeds: 'None.',
     representative: 'Barry',
     contactinfo: '+123456789'
   },
@@ -34,7 +34,7 @@ let students = [
     age: '8',
     insuranceCardexpires: '54DSF5',
     birthcertificate: null,
-    specialneeds: null,
+    specialneeds: 'None.',
     representative: 'Doug',
     contactinfo: '+123456789'
   },
@@ -45,7 +45,7 @@ let students = [
     age: '2',
     insuranceCardexpires: '54DSF5',
     birthcertificate: null,
-    specialneeds: null,
+    specialneeds: 'None.',
     representative: 'Finley',
     contactinfo: '+123456789'
   }
@@ -127,13 +127,17 @@ app.post('/api/student', (req, res) => {
 
   students = [...students, studentInfo];
 
-  res.status(401).json(students);
+  res.status(201).json(students);
 });
 
 app.get('/api/students', (req, res) => {
-  res
-    .status(200)
-    .json(students.map(student => ({ id: student.id, name: student.name })));
+  res.status(200).json(
+    students.map(student => ({
+      id: student.id,
+      name: student.name,
+      status: student.status
+    }))
+  );
 });
 
 app.get('/api/students/:id', (req, res) => {
@@ -157,7 +161,9 @@ app.delete('/api/students/:id', (req, res) => {
     students = students.filter(student => student.id !== id);
     res.status(200).json(students);
   } else {
-    res.status(404).json({ msg: 'tried to delete non-existent student ID ' + id });
+    res
+      .status(404)
+      .json({ msg: 'tried to delete non-existent student ID ' + id });
   }
 });
 
@@ -175,20 +181,25 @@ app.put('/api/students/:id', (req, res) => {
     contactinfo
   } = req.body;
 
-  let foundStudent = students.find(student => student.id === id);
+  let foundStudent = false;
+  for (let i = 0; i < students.length; i++) {
+    if (students[i].id === id) {
+      foundStudent = true;
+      name && (students[i].name = name);
+      status && (students[i].status = status);
+      age && (students[i].age = age);
+      insuranceCardexpires &&
+        (students[i].insuranceCardexpires = insuranceCardexpires);
+      birthcertificate && (students[i].birthcertificate = birthcertificate);
+      specialneeds && (students[i].specialneeds = specialneeds);
+      representative && (students[i].representative = representative);
+      contactinfo && (students[i].contactinfo = contactinfo);
+      break;
+    }
+  }
 
   if (foundStudent) {
-    name && (foundStudent.name = name);
-    status && (foundStudent.status = status);
-    age && (foundStudent.age = age);
-    insuranceCardexpires &&
-      (foundStudent.insuranceCardexpires = insuranceCardexpires);
-    birthcertificate && (foundStudent.birthcertificate = birthcertificate);
-    specialneeds && (foundStudent.specialneeds = specialneeds);
-    representative && (foundStudent.representative = representative);
-    contactinfo && (foundStudent.contactinfo = contactinfo);
-
-    res.status(200).json(foundStudent);
+    res.status(200).json(students);
   } else {
     res.status(404).json({ msg: 'tried to update non-existent student ID' });
   }

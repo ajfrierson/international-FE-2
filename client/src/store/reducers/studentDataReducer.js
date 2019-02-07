@@ -13,6 +13,7 @@ import {
   DELETE_STUDENT_START,
   DELETE_STUDENT_SUCCESS,
   DELETE_STUDENT_FAILURE,
+  POPULATE_FORM_FOR_STUDENT_UPDATE,
   UPDATE_STUDENT_START,
   UPDATE_STUDENT_SUCCESS,
   UPDATE_STUDENT_FAILURE
@@ -138,6 +139,38 @@ const studentDataReducer = (state = initialState, action) => {
         ...state,
         isDeletingStudent: false,
         error: `Failed to delete student with ID ${action.id}`
+      };
+    case POPULATE_FORM_FOR_STUDENT_UPDATE:
+      return {
+        ...state,
+        newStudentName: action.payload.name,
+        newStudentStatus: action.payload.status,
+        newStudentAge: action.payload.age,
+        newStudentInsuranceExpiry: action.payload.insuranceCardexpires || "",
+        newStudentBirthCert: action.payload.birthcertificate || "",
+        newStudentSpecialNeeds: action.payload.specialneeds,
+        newStudentRepresentative: action.payload.representative,
+        newStudentContactInfo: action.payload.contactinfo || ""
+      };
+    case UPDATE_STUDENT_START:
+      return {
+        ...state,
+        isUpdatingStudent: true,
+        error: null
+      };
+    case UPDATE_STUDENT_SUCCESS:
+      return {
+        ...state,
+        students: action.payload.updatedStudentsList,
+        currentViewedStudent: action.payload.newStudentInfo,
+        isUpdatingStudent: false
+      };
+    case UPDATE_STUDENT_FAILURE:
+      console.log(action.payload);
+      return {
+        ...state,
+        isUpdatingStudent: false,
+        error: `Failed to update student with ID ${action.id}`
       };
     default:
       return state;

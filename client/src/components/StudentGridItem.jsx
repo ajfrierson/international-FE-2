@@ -8,7 +8,7 @@ const StudentGridItem = props => {
       <h3>{props.student.name}</h3>
       <span>Status: </span>
       <span>{props.student.status}</span>
-      <NavLink to={`/student/${props.student.id}`}>View All Info</NavLink>
+      <div><NavLink to={`/student/${props.student.id}`}>View All Info</NavLink></div>
     </div>
   );
 };
