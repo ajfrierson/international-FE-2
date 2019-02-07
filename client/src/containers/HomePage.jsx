@@ -5,7 +5,7 @@ import StudentGrid from '../components/StudentGrid';
 const HomePage = props => {
   return (
     <main>
-      <StudentGrid />
+      <StudentGrid {...props} />
     </main>
   );
 };

@@ -13,6 +13,11 @@ const AppPageContainer = props => {
     <>
       <NavBar {...props} />
       <Route exact path='/' render={props => <HomePage {...props} />} />
+      <Route exact path='/students' render={props => <HomePage {...props} />} />
+      <Route
+        path='/students/:pageNum'
+        render={props => <HomePage {...props} />}
+      />
       <Route
         path='/addNewStudent'
         render={props => <SingleStudentAddPage {...props} />}

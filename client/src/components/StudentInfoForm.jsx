@@ -26,7 +26,7 @@ class StudentInfoForm extends React.Component {
     method: PropTypes.string.isRequired,
     addStudent: PropTypes.func.isRequired,
     updateStudent: PropTypes.func.isRequired,
-    toggleUpdateMode: PropTypes.func.isRequired
+    toggleUpdateMode: PropTypes.func
   };
 
   componentWillUnmount() {
