@@ -60,7 +60,9 @@ export const login = (username, password) => dispatch => {
   dispatch({ type: LOGIN_START });
   axios
     .post(`${baseURL}/login`, { username, password })
-    .then(res => dispatch({ type: LOGIN_SUCCESS, payload: username, other: res.data }))
+    .then(res =>
+      dispatch({ type: LOGIN_SUCCESS, payload: username, other: res.data })
+    )
     .catch(err => dispatch({ type: LOGIN_FAILURE, payload: err }));
 };
 
@@ -72,7 +74,12 @@ export const getStudents = () => dispatch => {
   dispatch({ type: FETCH_STUDENTS_START });
   axios
     .get(`${baseURL}/students`)
-    .then(res => dispatch({ type: FETCH_STUDENTS_SUCCESS, payload: res.data }))
+    .then(res =>
+      dispatch({
+        type: FETCH_STUDENTS_SUCCESS,
+        payload: res.data.sort((a, b) => (a > b ? 1 : -1))
+      })
+    )
     .catch(err => dispatch({ type: FETCH_STUDENTS_FAILURE, payload: err }));
 };
 
