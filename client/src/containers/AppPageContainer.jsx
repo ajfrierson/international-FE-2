@@ -18,7 +18,7 @@ const AppPageContainer = props => {
         render={props => <SingleStudentAddPage {...props} />}
       />
       <Route
-        path='/child/:id'
+        path='/student/:id'
         render={props => <SingleStudentViewPage {...props} />}
       />
     </>
