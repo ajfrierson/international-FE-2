@@ -65,7 +65,7 @@ const StudentFullInfoDisplay = props => {
 
 StudentFullInfoDisplay.propTypes = {
   currentViewedStudent: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     status: PropTypes.string.isRequired,
     age: PropTypes.string.isRequired,

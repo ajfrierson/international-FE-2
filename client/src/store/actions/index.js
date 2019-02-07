@@ -75,10 +75,7 @@ export const getStudents = () => dispatch => {
   dispatch({ type: FETCH_STUDENTS_START });
   axios
     .get(`${baseURL}/students`)
-    .then(res => {
-      dispatch({ type: FETCH_STUDENTS_SUCCESS, payload: res.data });
-      console.log(res.data);
-    })
+    .then(res => dispatch({ type: FETCH_STUDENTS_SUCCESS, payload: res.data }))
     .catch(err => dispatch({ type: FETCH_STUDENTS_FAILURE, payload: err }));
 };
 
@@ -99,9 +96,9 @@ export const addStudent = newStudent => dispatch => {
 export const getSingleStudent = id => dispatch => {
   dispatch({ type: FETCH_SINGLE_STUDENT_START });
   axios
-    .get(`${baseURL}/students/${id}`)
+    .get(`${baseURL}/students/${+id}`)
     .then(res =>
-      dispatch({ type: FETCH_SINGLE_STUDENT_SUCCESS, payload: res.data })
+      dispatch({ type: FETCH_SINGLE_STUDENT_SUCCESS, payload: res.data[0] })
     )
     .catch(err =>
       dispatch({ type: FETCH_SINGLE_STUDENT_FAILURE, payload: err, id })

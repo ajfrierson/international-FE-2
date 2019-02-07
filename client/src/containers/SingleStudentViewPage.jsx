@@ -14,7 +14,7 @@ import StudentFullInfoDisplay from '../components/StudentFullInfoDisplay';
 class SingleStudentViewPage extends React.Component {
   static propTypes = {
     currentViewedStudent: PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
       status: PropTypes.string.isRequired,
       age: PropTypes.string.isRequired,
@@ -83,6 +83,7 @@ class SingleStudentViewPage extends React.Component {
           <StudentInfoForm
             method='PUT'
             id={this.props.currentViewedStudent.id}
+            toggleUpdateMode={this.toggleUpdateMode}
           />
         ) : (
           <StudentFullInfoDisplay

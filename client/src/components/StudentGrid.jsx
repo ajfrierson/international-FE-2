@@ -10,7 +10,7 @@ class StudentGrid extends React.Component {
   static propTypes = {
     students: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
         status: PropTypes.string.isRequired
       })

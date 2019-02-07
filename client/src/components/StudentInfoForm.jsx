@@ -11,7 +11,7 @@ import {
 
 class StudentInfoForm extends React.Component {
   static propTypes = {
-    id: PropTypes.string,
+    id: PropTypes.number,
     newStudentName: PropTypes.string.isRequired,
     newStudentStatus: PropTypes.string.isRequired,
     newStudentAge: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
@@ -25,7 +25,8 @@ class StudentInfoForm extends React.Component {
     clearNewStudentInfo: PropTypes.func.isRequired,
     method: PropTypes.string.isRequired,
     addStudent: PropTypes.func.isRequired,
-    updateStudent: PropTypes.func.isRequired
+    updateStudent: PropTypes.func.isRequired,
+    toggleUpdateMode: PropTypes.func.isRequired
   };
 
   componentWillUnmount() {
@@ -59,6 +60,7 @@ class StudentInfoForm extends React.Component {
       represenative: this.props.newStudentRepresenative,
       contactInfo: this.props.newStudentContactInfo
     });
+    this.props.toggleUpdateMode && this.props.toggleUpdateMode();
   };
 
   render() {

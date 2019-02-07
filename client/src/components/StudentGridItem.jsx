@@ -17,7 +17,7 @@ const StudentGridItem = props => {
 
 StudentGridItem.propTypes = {
   student: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired
   })
 };
