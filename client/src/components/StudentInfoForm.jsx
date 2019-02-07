@@ -49,8 +49,8 @@ const StudentInfoForm = props => {
           <option disabled value=''>
             Select a student status
           </option>
-          <option value='currentStudent'>Student</option>
-          <option value='pastStudent'>Past student</option>
+          <option value='student'>Student</option>
+          <option value='past student'>Past student</option>
           <option value='visitor'>Visitor</option>
         </select>
       </div>
