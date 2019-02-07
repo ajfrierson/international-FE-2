@@ -29,7 +29,8 @@ import {
   FETCH_SINGLE_STUDENT_FAILURE
 } from './types';
 
-const baseURL = 'https://buildweek-be.herokuapp.com/api';
+// const baseURL = 'https://buildweek-be.herokuapp.com/api';
+const baseURL = `http://localhost:5000/api`;
 
 // General action definitions
 

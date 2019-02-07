@@ -9,7 +9,7 @@ app.use(CORS());
 
 let users = [
   {
-    id: '154939824611045457317',
+    id: 1,
     username: 'johndoe',
     password: 'admin'
   }
@@ -17,96 +17,130 @@ let users = [
 
 let students = [
   {
-    id: '154940632879679410101',
+    id: 1,
     name: 'Aaron',
     status: 'student',
-    age: 6,
-    insuranceCard: '54DSF5',
-    birthCertificateExpires: null,
-    specialNeeds: null,
+    age: '6',
+    insuranceCardexpires: '54DSF5',
+    birthcertificate: null,
+    specialneeds: null,
     representative: 'Barry',
-    contactInfo: '+123456789'
+    contactinfo: '+123456789'
   },
   {
-    id: '154879679940632410101',
+    id: 2,
     name: 'Cindy',
     status: 'student',
-    age: 8,
-    insuranceCard: '54DSF5',
-    birthCertificateExpires: null,
-    specialNeeds: null,
+    age: '8',
+    insuranceCardexpires: '54DSF5',
+    birthcertificate: null,
+    specialneeds: null,
     representative: 'Doug',
-    contactInfo: '+123456789'
+    contactinfo: '+123456789'
   },
   {
-    id: '328796791549406410101',
+    id: 3,
     name: 'Ed',
     status: 'student',
-    age: 2,
-    insuranceCard: '54DSF5',
-    birthCertificateExpires: null,
-    specialNeeds: null,
+    age: '2',
+    insuranceCardexpires: '54DSF5',
+    birthcertificate: null,
+    specialneeds: null,
     representative: 'Finley',
-    contactInfo: '+123456789'
+    contactinfo: '+123456789'
   }
 ];
 
-const generateId = () =>
-  `${Date.now()}${Math.floor(Math.random() * 100000000)}`;
+const generateUserID = (function() {
+  const id = 1;
+  return function incrementID() {
+    return (id += 1);
+  };
+})();
 
-app.get('/api', (req, res) => {
-  res.status(200).json({ message: 'OK' });
+const generateStudentID = (function() {
+  const id = 3;
+  return function incrementID() {
+    return (id += 1);
+  };
+})();
+
+app.get('/api/test/users', (req, res) => {
+  res.status(200).json(users);
 });
 
-app.get('/api/students', (req, res) => {
+app.get('/api/test/students', (req, res) => {
   res.status(200).json(students);
 });
 
-app.post('/api/students', (req, res) => {
+app.post('/api/register', (req, res) => {
+  const { username, password } = req.body;
+
+  const userInfo = {
+    username,
+    password
+  };
+
+  users = [...users, userInfo];
+
+  res.status(201).json(users);
+});
+
+app.post('/api/login', (req, res) => {
+  const { username, password } = req.body;
+
+  const foundUser = users.find(
+    user => user.username === username && user.password === password
+  );
+
+  if (foundUser) {
+    res.status(200).json({ msg: 'GUD LOGIN' });
+  } else {
+    res.status(401).json({ msg: 'BAD LOGIN' });
+  }
+});
+
+app.post('/api/student', (req, res) => {
   const {
     name,
     status,
     age,
-    insuranceCard,
-    birthCertificateExpires,
-    specialNeeds,
+    insuranceCardexpires,
+    birthcertificate,
+    specialneeds,
     representative,
-    contactInfo
+    contactinfo
   } = req.body;
 
-  if (!name || !status || isNaN(age) || age < 0) {
-    res.sendStatus(400);
-  } else {
-    const newStudent = {
-      name,
-      status,
-      age,
-      insuranceCard: insuranceCard || null,
-      birthCertificateExpires: birthCertificateExpires || null,
-      specialNeeds: specialNeeds || null,
-      representative: representative || null,
-      contactInfo: contactInfo || null
-    };
-    students = [...students, newStudent];
-    res.status(201).json(newStudent);
-  }
+  const studentInfo = {
+    name,
+    status,
+    age,
+    insuranceCardexpires,
+    birthcertificate,
+    specialneeds,
+    representative,
+    contactinfo
+  };
+
+  res.status(401).json(students);
 });
 
-app.post('/api/users/login', (req, res) => {
-  const { loginUsername, loginPassword } = req.body;
+app.get('/api/students', (req, res) => {
+  res
+    .status(200)
+    .json(students.map(student => ({ id: student.id, name: student.name })));
+});
 
-  if (!loginUsername || !loginPassword) {
-    res.sendStatus(401);
-  }
+app.get('/api/student/:id', (req, res) => {
+  const id = req.params.id;
 
-  const foundUser = users.find(
-    user => user.username === loginUsername && user.password === loginPassword
-  );
+  const foundStudent = students.find(student => student.id === id);
 
-  if (foundUser) {
-    res.status(200).json(foundUser.id);
+  if (foundStudent) {
+    res.status(200).json(foundStudent);
   } else {
-    res.sendStatus(403);
+    res.status(404).json({ msg: 'no such student ID' });
   }
 });
 
