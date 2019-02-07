@@ -32,7 +32,7 @@ class SingleStudentViewPage extends React.Component {
             this.props.currentViewedStudent.name}
         </h3>
         <div>
-          Status:{' '}
+          Status:&nbsp;
           {this.props.currentViewedStudent &&
             this.props.currentViewedStudent.status}
         </div>
