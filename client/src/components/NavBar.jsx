@@ -5,13 +5,15 @@ import { NavLink } from 'react-router-dom';
 
 import { logout } from '../store/actions';
 
+import "./NavStyles.css";
+
 const NavBar = props => {
   return (
     <nav>
-      <NavLink to='/'>Home</NavLink>
-      <NavLink to='/addNewStudent'>Add New Student</NavLink>
-      <NavLink to='/' onClick={props.logout}>
-        Log Out
+      <NavLink className="nav-link" activeClassName="nav-link--active" exact to='/'>Home</NavLink>
+      <NavLink className="nav-link" activeClassName="nav-link--active" to='/addNewStudent'>Add New Student</NavLink>
+      <NavLink className="nav-link" activeClassName="nav-link--active" to='/' onClick={props.logout}>
+        <button type="button">Log Out</button>
       </NavLink>
     </nav>
   );

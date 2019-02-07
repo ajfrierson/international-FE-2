@@ -11,7 +11,7 @@ import SingleStudentViewPage from './SingleStudentViewPage';
 const AppPageContainer = props => {
   return (
     <>
-      <NavBar />
+      <NavBar {...props} />
       <Route exact path='/' render={props => <HomePage {...props} />} />
       <Route
         path='/addNewStudent'
