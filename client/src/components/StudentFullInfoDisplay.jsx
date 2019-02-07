@@ -43,11 +43,11 @@ const StudentFullInfoDisplay = props => {
       </div>
       <div>
         <span className='singleStudentViewField__label'>
-          Student's representative:{' '}
+          Student's represenative:{' '}
         </span>
         <span className='singleStudentViewField__value'>
           {props.currentViewedStudent &&
-            props.currentViewedStudent.representative}
+            props.currentViewedStudent.represenative}
         </span>
       </div>
       <div>
@@ -72,7 +72,7 @@ StudentFullInfoDisplay.propTypes = {
     insuranceCardexpires: PropTypes.string,
     birthcertificate: PropTypes.string,
     specialneeds: PropTypes.string,
-    representative: PropTypes.string,
+    represenative: PropTypes.string,
     contactinfo: PropTypes.string
   })
 };

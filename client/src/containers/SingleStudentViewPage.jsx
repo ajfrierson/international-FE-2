@@ -21,7 +21,7 @@ class SingleStudentViewPage extends React.Component {
       insuranceCardexpires: PropTypes.string,
       birthcertificate: PropTypes.string,
       specialneeds: PropTypes.string,
-      representative: PropTypes.string,
+      represenative: PropTypes.string,
       contactinfo: PropTypes.string
     }),
     getSingleStudent: PropTypes.func.isRequired,

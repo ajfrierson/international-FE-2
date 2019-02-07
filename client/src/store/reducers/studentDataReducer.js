@@ -28,7 +28,7 @@ let initialState = {
   newStudentInsuranceExpiry: '',
   newStudentBirthCert: '',
   newStudentSpecialNeeds: '',
-  newStudentRepresentative: '',
+  newStudentRepresenative: '',
   newStudentContactInfo: '',
   isFetchingStudents: false,
   isAddingStudent: false,
@@ -73,7 +73,7 @@ const studentDataReducer = (state = initialState, action) => {
         newStudentInsuranceExpiry: '',
         newStudentBirthCert: '',
         newStudentSpecialNeeds: '',
-        newStudentRepresentative: '',
+        newStudentRepresenative: '',
         newStudentContactInfo: ''
       };
     case ADD_STUDENT_START:
@@ -92,7 +92,7 @@ const studentDataReducer = (state = initialState, action) => {
         newStudentInsuranceExpiry: '',
         newStudentBirthCert: '',
         newStudentSpecialNeeds: '',
-        newStudentRepresentative: '',
+        newStudentRepresenative: '',
         newStudentContactInfo: ''
       };
     case ADD_STUDENT_FAILURE:
@@ -149,7 +149,7 @@ const studentDataReducer = (state = initialState, action) => {
         newStudentInsuranceExpiry: action.payload.insuranceCardexpires || "",
         newStudentBirthCert: action.payload.birthcertificate || "",
         newStudentSpecialNeeds: action.payload.specialneeds,
-        newStudentRepresentative: action.payload.representative,
+        newStudentRepresenative: action.payload.represenative,
         newStudentContactInfo: action.payload.contactinfo || ""
       };
     case UPDATE_STUDENT_START:

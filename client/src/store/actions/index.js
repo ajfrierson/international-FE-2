@@ -36,8 +36,8 @@ import {
   UPDATE_STUDENT_FAILURE
 } from './types';
 
-// const baseURL = 'https://buildweek-be.herokuapp.com/api';
-const baseURL = `http://localhost:5000/api`;
+const baseURL = 'https://buildweek-be.herokuapp.com/api';
+// const baseURL = `http://localhost:5000/api`;
 
 // General action definitions
 
@@ -75,7 +75,10 @@ export const getStudents = () => dispatch => {
   dispatch({ type: FETCH_STUDENTS_START });
   axios
     .get(`${baseURL}/students`)
-    .then(res => dispatch({ type: FETCH_STUDENTS_SUCCESS, payload: res.data }))
+    .then(res => {
+      dispatch({ type: FETCH_STUDENTS_SUCCESS, payload: res.data });
+      console.log(res.data);
+    })
     .catch(err => dispatch({ type: FETCH_STUDENTS_FAILURE, payload: err }));
 };
 

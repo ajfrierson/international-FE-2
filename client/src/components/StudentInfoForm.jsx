@@ -19,7 +19,7 @@ class StudentInfoForm extends React.Component {
     newStudentInsuranceExpiry: PropTypes.string.isRequired,
     newStudentBirthCert: PropTypes.string.isRequired,
     newStudentSpecialNeeds: PropTypes.string.isRequired,
-    newStudentRepresentative: PropTypes.string.isRequired,
+    newStudentRepresenative: PropTypes.string.isRequired,
     newStudentContactInfo: PropTypes.string.isRequired,
     handleTextInputChange: PropTypes.func.isRequired,
     clearNewStudentInfo: PropTypes.func.isRequired,
@@ -41,7 +41,7 @@ class StudentInfoForm extends React.Component {
       insuranceCardexpires: this.props.newStudentInsuranceExpiry,
       birthcertificate: this.props.newStudentBirthCert,
       specialneeds: this.props.newStudentSpecialNeeds,
-      representative: this.props.newStudentRepresentative,
+      represenative: this.props.newStudentRepresenative,
       contactInfo: this.props.newStudentContactInfo
     });
   };
@@ -56,7 +56,7 @@ class StudentInfoForm extends React.Component {
       insuranceCardexpires: this.props.newStudentInsuranceExpiry,
       birthcertificate: this.props.newStudentBirthCert,
       specialneeds: this.props.newStudentSpecialNeeds,
-      represenative: this.props.newStudentRepresentative,
+      represenative: this.props.newStudentRepresenative,
       contactInfo: this.props.newStudentContactInfo
     });
   };
@@ -156,15 +156,15 @@ class StudentInfoForm extends React.Component {
           />
         </div>
         <div>
-          <label htmlFor='newStudentRepresentative'>
-            Student's representative
+          <label htmlFor='newStudentRepresenative'>
+            Student's represenative
           </label>
           <input
             type='text'
-            id='newStudentRepresentative'
-            name='newStudentRepresentative'
-            placeholder="Enter name of student's representative"
-            value={this.props.newStudentRepresentative}
+            id='newStudentRepresenative'
+            name='newStudentRepresenative'
+            placeholder="Enter name of student's represenative"
+            value={this.props.newStudentRepresenative}
             onChange={this.props.handleTextInputChange}
           />
         </div>
@@ -199,7 +199,7 @@ const mapStateToProps = state => {
       state.studentDataReducer.newStudentInsuranceExpiry,
     newStudentBirthCert: state.studentDataReducer.newStudentBirthCert,
     newStudentSpecialNeeds: state.studentDataReducer.newStudentSpecialNeeds,
-    newStudentRepresentative: state.studentDataReducer.newStudentRepresentative,
+    newStudentRepresenative: state.studentDataReducer.newStudentRepresenative,
     newStudentContactInfo: state.studentDataReducer.newStudentContactInfo
   };
 };
