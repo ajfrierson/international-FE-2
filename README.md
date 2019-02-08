@@ -93,6 +93,8 @@ _Can be found in the following container(s): `SingleStudentViewPage`_
 
 Component for the actual grid display of all students falling within the current pagination count.
 
+Component state is utilized and managed with the React Hooks API to implement the pagination feature.
+
 _Can be found in the following container(s): `HomePage`_
 
 ### `StudentGridItem.jsx`
