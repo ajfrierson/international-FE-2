@@ -19,7 +19,7 @@ import {
   UPDATE_STUDENT_FAILURE
 } from '../actions/types';
 
-let initialState = {
+const initialState = {
   students: [],
   studentsPerPage: 2,
   maxPageNumber: 0,
@@ -145,6 +145,7 @@ const studentDataReducer = (state = initialState, action) => {
         error: `Failed to delete student with ID ${action.id}`
       };
     case POPULATE_FORM_FOR_STUDENT_UPDATE:
+    console.log("POP", action.payload);
       return {
         ...state,
         newStudentName: action.payload.name,

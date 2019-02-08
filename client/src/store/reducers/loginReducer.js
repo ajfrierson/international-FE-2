@@ -6,7 +6,7 @@ import {
   LOGOUT
 } from '../actions/types';
 
-let initialState = {
+const initialState = {
   loggedInUser: localStorage.getItem('token') || null,
   loginUsername: '',
   loginPassword: '',

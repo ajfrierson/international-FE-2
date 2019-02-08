@@ -5,7 +5,7 @@ import {
   REGISTER_FAILURE
 } from '../actions/types';
 
-let initialState = {
+const initialState = {
   registrationUsername: '',
   registrationPassword: '',
   isRegisteringNewUser: false,

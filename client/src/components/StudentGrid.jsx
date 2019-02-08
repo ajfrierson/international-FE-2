@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -6,74 +6,63 @@ import { getStudents } from '../store/actions/studentDataActions';
 
 import StudentGridItem from './StudentGridItem';
 
-class StudentGrid extends React.Component {
-  static propTypes = {
-    students: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        status: PropTypes.string.isRequired
-      })
-    ),
-    studentsPerPage: PropTypes.number,
-    maxPageNumber: PropTypes.number
+const StudentGrid = props => {
+  const [pageNumber, setPageNumber] = useState(
+    +props.match.params.pageNum || 1
+  );
+
+  useEffect(() => {
+    props.getStudents();
+    props.history.push(`/students/${pageNumber}`);
+  }, [pageNumber]);
+
+  const prevPage = e => {
+    const newPageNumber = pageNumber > 1 ? +pageNumber - 1 : pageNumber;
+    setPageNumber(newPageNumber);
   };
 
-  state = {
-    pageNumber: +this.props.match.params.pageNum || 1
+  const nextPage = e => {
+    const newPageNumber =
+      pageNumber < props.maxPageNumber ? +pageNumber + 1 : pageNumber;
+    setPageNumber(newPageNumber);
   };
 
-  componentDidMount() {
-    this.props.getStudents();
-    console.log('num:', this.state.pageNumber, 'MAX', this.props.maxPageNumber);
-  }
+  const fromItem = props.studentsPerPage * (pageNumber - 1);
+  const toItem = fromItem + props.studentsPerPage;
 
-  prevPage = e => {
-    const pageNumber =
-      this.state.pageNumber > 1
-        ? +this.state.pageNumber - 1
-        : this.state.pageNumber;
-    this.setState({ pageNumber }, () =>
-      this.props.history.push(`/students/${pageNumber}`)
-    );
-  };
+  return (
+    <>
+      <div className='studentsGrid'>
+        {props.students &&
+          props.students
+            .slice(fromItem, toItem)
+            .map(student => (
+              <StudentGridItem key={student.id} student={student} />
+            ))}
+      </div>
+      <div>
+        <button type='button' onClick={prevPage}>
+          Previous Page
+        </button>
+        <button type='button' onClick={nextPage}>
+          Next Page
+        </button>
+      </div>
+    </>
+  );
+};
 
-  nextPage = e => {
-    const pageNumber =
-      this.state.pageNumber < this.props.maxPageNumber
-        ? +this.state.pageNumber + 1
-        : this.state.pageNumber;
-    this.setState({ pageNumber }, () =>
-      this.props.history.push(`/students/${pageNumber}`)
-    );
-  };
-
-  render() {
-    const fromItem = this.props.studentsPerPage * (this.state.pageNumber - 1),
-      toItem = fromItem + this.props.studentsPerPage;
-
-    return (
-      <>
-        <div className='studentsGrid'>
-          {this.props.students &&
-            this.props.students
-              .slice(fromItem, toItem)
-              .map(student => (
-                <StudentGridItem key={student.id} student={student} />
-              ))}
-        </div>
-        <div>
-          <button type='button' onClick={this.prevPage}>
-            Previous Page
-          </button>
-          <button type='button' onClick={this.nextPage}>
-            Next Page
-          </button>
-        </div>
-      </>
-    );
-  }
-}
+StudentGrid.propTypes = {
+  students: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      status: PropTypes.string.isRequired
+    })
+  ),
+  studentsPerPage: PropTypes.number,
+  maxPageNumber: PropTypes.number
+};
 
 const mapStateToProps = state => {
   return {

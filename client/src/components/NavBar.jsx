@@ -13,8 +13,7 @@ const NavBar = props => {
       <NavLink
         className='nav-link'
         activeClassName='nav-link--active'
-        exact
-        to='/'
+        to='/students'
       >
         Home
       </NavLink>

@@ -7,13 +7,8 @@ import './App.css';
 import SignInPage from './containers/SignInPage';
 import AppPageContainer from './containers/AppPageContainer';
 
-const App = props => {
-  return props.loggedInUser ? (
-    <AppPageContainer {...props} />
-  ) : (
-    <SignInPage />
-  );
-};
+const App = props =>
+  props.loggedInUser ? <AppPageContainer {...props} /> : <SignInPage />;
 
 App.propTypes = {
   loggedInUser: PropTypes.string

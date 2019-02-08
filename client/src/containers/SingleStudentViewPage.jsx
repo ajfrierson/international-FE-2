@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -11,94 +11,77 @@ import {
 import StudentInfoForm from '../components/StudentInfoForm';
 import StudentFullInfoDisplay from '../components/StudentFullInfoDisplay';
 
-class SingleStudentViewPage extends React.Component {
-  static propTypes = {
-    currentViewedStudent: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      status: PropTypes.string.isRequired,
-      age: PropTypes.string.isRequired,
-      insuranceCardexpires: PropTypes.string,
-      birthcertificate: PropTypes.string,
-      specialneeds: PropTypes.string,
-      represenative: PropTypes.string,
-      contactinfo: PropTypes.string
-    }),
-    getSingleStudent: PropTypes.func.isRequired,
-    deleteStudent: PropTypes.func.isRequired,
-    populateFormForStudentUpdate: PropTypes.func.isRequired
-  };
+const SingleStudentViewPage = props => {
+  const [updateMode, setUpdateMode] = useState(false);
 
-  state = {
-    updateMode: false
-  };
+  useEffect(() => {
+    props.getSingleStudent(props.match.params.id);
+    updateMode && populateFormForStudentUpdate();
+    return cleanup => () => setUpdateMode(false);
+  }, [updateMode]);
 
-  componentDidMount() {
-    this.props.getSingleStudent(this.props.match.params.id);
-  }
-
-  componentWillUnmount() {
-    this.setState({ updateMode: false });
-  }
-
-  deleteStudent = e => {
+  const deleteStudent = e => {
     if (
       window.confirm(
         `Are you sure you want to delete the information of student ${
-          this.props.currentViewedStudent.name
+          props.currentViewedStudent.name
         }?`
       )
     ) {
-      this.props.deleteStudent(this.props.currentViewedStudent.id);
+      props.deleteStudent(props.currentViewedStudent.id);
     }
   };
 
-  populateFormForStudentUpdate() {
-    this.props.populateFormForStudentUpdate(this.props.currentViewedStudent);
-  }
-
-  toggleUpdateMode = e => {
-    const toggledUpdateMode = !this.state.updateMode;
-    this.setState(
-      {
-        updateMode: toggledUpdateMode
-      },
-      () => toggledUpdateMode && this.populateFormForStudentUpdate()
-    );
+  const populateFormForStudentUpdate = () => {
+    props.populateFormForStudentUpdate(props.currentViewedStudent);
   };
 
-  render() {
-    return (
+  const toggleUpdateMode = e => setUpdateMode(!updateMode);
+
+  return (
+    <div>
       <div>
-        <div>
-          <h3>
-            {this.props.currentViewedStudent &&
-              this.props.currentViewedStudent.name}
-          </h3>
-          <button onClick={this.toggleUpdateMode}>
-            {this.state.updateMode ? 'Cancel Edit' : 'Edit info'}
-          </button>
-        </div>
-        {this.state.updateMode ? (
-          <StudentInfoForm
-            method='PUT'
-            id={this.props.currentViewedStudent.id}
-            toggleUpdateMode={this.toggleUpdateMode}
-          />
-        ) : (
-          <StudentFullInfoDisplay
-            currentViewedStudent={this.props.currentViewedStudent}
-          />
-        )}
-        <div>
-          <button type='button' onClick={this.deleteStudent}>
-            Delete Student
-          </button>
-        </div>
+        <h3>{props.currentViewedStudent && props.currentViewedStudent.name}</h3>
+        <button onClick={toggleUpdateMode}>
+          {updateMode ? 'Cancel Edit' : 'Edit info'}
+        </button>
       </div>
-    );
-  }
-}
+      {updateMode ? (
+        <StudentInfoForm
+          method='PUT'
+          id={props.currentViewedStudent.id}
+          toggleUpdateMode={toggleUpdateMode}
+        />
+      ) : (
+        <StudentFullInfoDisplay
+          currentViewedStudent={props.currentViewedStudent}
+        />
+      )}
+      <div>
+        <button type='button' onClick={deleteStudent}>
+          Delete Student
+        </button>
+      </div>
+    </div>
+  );
+};
+
+SingleStudentViewPage.propTypes = {
+  currentViewedStudent: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    status: PropTypes.string.isRequired,
+    age: PropTypes.string.isRequired,
+    insuranceCardexpires: PropTypes.string,
+    birthcertificate: PropTypes.string,
+    specialneeds: PropTypes.string,
+    represenative: PropTypes.string,
+    contactinfo: PropTypes.string
+  }),
+  getSingleStudent: PropTypes.func.isRequired,
+  deleteStudent: PropTypes.func.isRequired,
+  populateFormForStudentUpdate: PropTypes.func.isRequired
+};
 
 const mapStateToProps = state => {
   return {
