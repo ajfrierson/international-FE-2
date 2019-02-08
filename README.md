@@ -109,8 +109,12 @@ _Can be found in the following container(s): `SingleStudentAddPage`, `SingleStud
 
 ### `registrationReducer`
 
-
+Handles the state for processing registration data.
 
 ### `loginReducer`
 
+Handles the state for processing login data.
+
 ### `studentDataReducer`
+
+Handles the state for processing student data.
