@@ -56,10 +56,14 @@ const StudentInfoForm = props => {
   }
 
   return (
-    <form onSubmit={submitButtonAction}>
-      <div>
-        <label htmlFor='newStudentName'>Name</label>
+    <form className='student-form' onSubmit={submitButtonAction}>
+      <div className='student-form__overlay' />
+      <div className='student-form__field'>
+        <label className='student-form__field__label' htmlFor='newStudentName'>
+          Name
+        </label>
         <input
+          className='student-form__field__input'
           type='text'
           id='newStudentName'
           name='newStudentName'
@@ -69,8 +73,13 @@ const StudentInfoForm = props => {
           onChange={props.handleTextInputChange}
         />
       </div>
-      <div>
-        <label htmlFor='newStudentStatus'>Student status</label>
+      <div className='student-form__field'>
+        <label
+          className='student-form__field__label'
+          htmlFor='newStudentStatus'
+        >
+          Student status
+        </label>
         <select
           id='newStudentStatus'
           name='newStudentStatus'
@@ -86,9 +95,12 @@ const StudentInfoForm = props => {
           <option value='visitor'>Visitor</option>
         </select>
       </div>
-      <div>
-        <label htmlFor='newStudentAge'>Age</label>
+      <div className='student-form__field'>
+        <label className='student-form__field__label' htmlFor='newStudentAge'>
+          Age
+        </label>
         <input
+          className='student-form__field__input'
           type='number'
           min='0'
           id='newStudentAge'
@@ -99,11 +111,15 @@ const StudentInfoForm = props => {
           onChange={props.handleTextInputChange}
         />
       </div>
-      <div>
-        <label htmlFor='newStudentInsuranceExpiry'>
+      <div className='student-form__field'>
+        <label
+          className='student-form__field__label'
+          htmlFor='newStudentInsuranceExpiry'
+        >
           Insurance expiration date
         </label>
         <input
+          className='student-form__field__input'
           type='text'
           id='newStudentInsuranceExpiry'
           name='newStudentInsuranceExpiry'
@@ -112,9 +128,15 @@ const StudentInfoForm = props => {
           onChange={props.handleTextInputChange}
         />
       </div>
-      <div>
-        <label htmlFor='newStudentBirthCert'>Birth certificate</label>
+      <div className='student-form__field'>
+        <label
+          className='student-form__field__label'
+          htmlFor='newStudentBirthCert'
+        >
+          Birth certificate
+        </label>
         <input
+          className='student-form__field__input'
           type='text'
           id='newStudentBirthCert'
           name='newStudentBirthCert'
@@ -123,9 +145,15 @@ const StudentInfoForm = props => {
           onChange={props.handleTextInputChange}
         />
       </div>
-      <div>
-        <label htmlFor='newStudentSpecialNeeds'>Special needs</label>
+      <div className='student-form__field'>
+        <label
+          className='student-form__field__label'
+          htmlFor='newStudentSpecialNeeds'
+        >
+          Special needs
+        </label>
         <input
+          className='student-form__field__input'
           type='text'
           id='newStudentSpecialNeeds'
           name='newStudentSpecialNeeds'
@@ -135,9 +163,15 @@ const StudentInfoForm = props => {
           onChange={props.handleTextInputChange}
         />
       </div>
-      <div>
-        <label htmlFor='newStudentRepresenative'>Student's represenative</label>
+      <div className='student-form__field'>
+        <label
+          className='student-form__field__label'
+          htmlFor='newStudentRepresenative'
+        >
+          Student's represenative
+        </label>
         <input
+          className='student-form__field__input'
           type='text'
           id='newStudentRepresenative'
           name='newStudentRepresenative'
@@ -146,9 +180,15 @@ const StudentInfoForm = props => {
           onChange={props.handleTextInputChange}
         />
       </div>
-      <div>
-        <label htmlFor='newStudentContactInfo'>Contact Info</label>
+      <div className='student-form__field'>
+        <label
+          className='student-form__field__label'
+          htmlFor='newStudentContactInfo'
+        >
+          Contact Info
+        </label>
         <input
+          className='student-form__field__input'
           type='text'
           id='newStudentContactInfo'
           name='newStudentContactInfo'
@@ -157,11 +197,19 @@ const StudentInfoForm = props => {
           onChange={props.handleTextInputChange}
         />
       </div>
-      <div>
-        <button type='button' onClick={props.clearNewStudentInfo}>
+      <div className='student-form__buttons'>
+        <button
+          className='student-form__buttons__clear'
+          type='button'
+          onClick={props.clearNewStudentInfo}
+        >
           Clear
         </button>
-        {submitButtonText && <button>{submitButtonText}</button>}
+        {submitButtonText && (
+          <button className='student-form__buttons__submit'>
+            {submitButtonText}
+          </button>
+        )}
       </div>
     </form>
   );

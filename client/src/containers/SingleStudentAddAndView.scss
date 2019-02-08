@@ -1,0 +1,83 @@
+.add-student-page {
+  margin-left: 17.5%;
+
+  &__heading {
+    text-align: center;
+    font-size: 3.6rem;
+    font-weight: 600;
+    letter-spacing: 3.2px;
+    padding-top: 25px;
+    padding-left: -3.2px;
+    margin-bottom: 50px;
+  }
+}
+
+.view-student-page {
+  margin-left: 17.5%;
+
+  &__header {
+    @include make-flex(row, center, center);
+
+    &__heading {
+      display: inline-block;
+      text-align: center;
+      font-size: 3.6rem;
+      font-weight: 600;
+      letter-spacing: 3.2px;
+      padding-top: 25px;
+      padding-left: -3.2px;
+      margin-bottom: 50px;
+    }
+  }
+}
+
+.student-form {
+  position: relative; 
+  display: block;
+  width: 50%;
+  padding: 10px 1.25%;
+  margin: 0 auto 50px;
+
+  &__overlay {
+    @include make-overlay($mine-shaft, 1, -1);
+  }
+
+  &__field {
+    margin-bottom: 25px;
+
+    &__label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    &__input {
+      @include smoothen-input($mine-shaft);
+
+      width: 100%;
+    }
+
+    select {
+      background: $mine-shaft;
+      color: white;
+      cursor: pointer;
+      padding: 5px 10px;
+    }
+  }
+
+  &__buttons {
+    @include make-flex(row, center, center);
+
+    & > button {
+      @include colorize-button(
+        $action-button-bg-color,
+        $action-button-font-color
+      );
+
+      width: 125px;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 10px 0;
+      margin: 0 1%;
+    }
+  }
+}

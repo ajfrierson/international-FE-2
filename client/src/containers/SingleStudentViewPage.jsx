@@ -39,9 +39,11 @@ const SingleStudentViewPage = props => {
   const toggleUpdateMode = e => setUpdateMode(!updateMode);
 
   return (
-    <>
-      <div>
-        <h3>{props.currentViewedStudent && props.currentViewedStudent.name}</h3>
+    <div className='view-student-page'>
+      <div className="view-student-page__header">
+        <h2 className='view-student-page__header__heading'>
+          {props.currentViewedStudent && props.currentViewedStudent.name}
+        </h2>
         <button onClick={toggleUpdateMode}>
           {updateMode ? 'Cancel Edit' : 'Edit info'}
         </button>
@@ -58,11 +60,11 @@ const SingleStudentViewPage = props => {
         />
       )}
       <div>
-        <button type='button' onClick={deleteStudent}>
+        {!updateMode && <button type='button' onClick={deleteStudent}>
           Delete Student
-        </button>
+        </button>}
       </div>
-    </>
+    </div>
   );
 };
 
