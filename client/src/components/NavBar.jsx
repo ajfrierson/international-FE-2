@@ -5,11 +5,9 @@ import { NavLink } from 'react-router-dom';
 
 import { logout } from '../store/actions/loginActions';
 
-import './NavStyles.css';
-
 const NavBar = props => {
   return (
-    <nav>
+    <nav className="navbar">
       <NavLink
         className='nav-link'
         activeClassName='nav-link--active'

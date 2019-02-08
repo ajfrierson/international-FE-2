@@ -1,0 +1,54 @@
+.signin-container {
+  @include make-flex(row, space-around, center);
+
+  &__overlay {
+    @include make-overlay($mine-shaft, 1, -1);
+  }
+
+  &__form {
+    position: relative;
+    width: 42.5%;
+    padding: 20px;
+    animation: float-up 1s 0.75s backwards;
+
+    &__header {
+      font-size: 2.4rem;
+      font-weight: 600;
+      letter-spacing: 5px;
+      padding-left: -8px;
+      margin-bottom: 37.5px;
+    }
+
+    &__field {
+      margin-bottom: 25px;
+
+      &__label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      &__input {
+        @include smoothen-input($mine-shaft);
+
+        width: 95%;
+      }
+    }
+
+    &__buttons {
+      margin: 42.5px 0 12.5px;
+
+      &__submit {
+        @include colorize-button(
+          $action-button-bg-color,
+          $action-button-font-color
+        );
+
+        width: 125px;
+        cursor: pointer;
+        box-shadow: none;
+        padding: 7.5px 0;
+        border-radius: 5px;
+      }
+    }
+  }
+}

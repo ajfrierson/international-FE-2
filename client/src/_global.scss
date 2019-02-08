@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  font-family: $body-font-family;
+  font-size: 62.5%;
+}
+
+body {
+  height: 100%;
+  color: $body-font-color;
+}
+
+p, label {
+  font-size: $body-font-size;
+  line-height: 1.5;
+}
+
+img {
+  max-width: 100%;
+}
+
+.root {
+  height: 100%;
+}
+
+.flex-center-wrapper {
+  @include make-flex(row, center);
+}

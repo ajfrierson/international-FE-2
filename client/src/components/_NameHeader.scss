@@ -1,0 +1,31 @@
+.name-header {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  font-family: $heading-font-family;
+  color: $heading-font-color;
+  text-transform: uppercase;
+  padding: 3rem 2rem;
+  border-top: 1px solid $name-header-border-color;
+  border-bottom: 1px solid $name-header-border-color;
+  margin-bottom: 75px;
+  animation: fade-in 1s;
+
+  &__overlay {
+    @include make-overlay($name-header-overlay-base);
+  }
+
+  &__heading {
+    font-size: 3.6rem;
+    font-weight: 600;
+    letter-spacing: 8px;
+    margin-bottom: 16px;
+  }
+
+  &__desc {
+    font-size: 1.28rem;
+    font-weight: 300;
+    letter-spacing: 3.2px;
+    line-height: 2;
+  }
+}

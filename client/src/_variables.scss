@@ -1,0 +1,37 @@
+/* Color values */
+
+$black: #000000;
+$lightgray: #d3d3d3;
+$darkgray: #717171;
+$white: #ffffff;
+$mine-shaft: #2c2c2c;
+
+/*  Color assignments */
+
+// Global assignments
+$body-font-color: $white;
+$heading-font-color: $white;
+
+// Overlay colors
+$name-header-overlay-base: $black;
+$signin-overlay-base: $mine-shaft;
+
+// Action button assignments
+$action-button-bg-color: $mine-shaft;
+$action-button-font-color: $white;
+
+// App component assignments
+
+// Name header component assignments
+$name-header-border-color: $white;
+
+// Sign in form components assignments
+$signin-form-border-color: $white;
+
+/* Font assignments */
+
+// Global assignments
+$body-font-family: 'Source Sans Pro', 'sans-serif';
+$body-font-size: 1.8rem;
+$heading-font-family: 'Source Sans Pro', 'sans-serif';
+$heading-font-size: 2.4rem;

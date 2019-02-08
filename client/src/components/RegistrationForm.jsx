@@ -15,11 +15,18 @@ const RegistrationForm = props => {
   };
 
   return (
-    <form onSubmit={registerNewUser}>
-      <h2>Register</h2>
-      <div>
-        <label htmlFor='registrationUsername'>Username</label>
+    <form className='signin-container__form' onSubmit={registerNewUser}>
+      <div className='signin-container__overlay' />
+      <h2 className='signin-container__form__header'>Register</h2>
+      <div className='signin-container__form__field'>
+        <label
+          className='signin-container__form__field__label'
+          htmlFor='registrationUsername'
+        >
+          Username
+        </label>
         <input
+          className='signin-container__form__field__input'
           type='text'
           id='registrationUsername'
           name='registrationUsername'
@@ -29,9 +36,15 @@ const RegistrationForm = props => {
           onChange={props.handleTextInputChange}
         />
       </div>
-      <div>
-        <label htmlFor='registrationPassword'>Password</label>
+      <div className='signin-container__form__field'>
+        <label
+          className='signin-container__form__field__label'
+          htmlFor='registrationPassword'
+        >
+          Password
+        </label>
         <input
+          className='signin-container__form__field__input'
           type='password'
           id='registrationPassword'
           name='registrationPassword'
@@ -41,8 +54,8 @@ const RegistrationForm = props => {
           onChange={props.handleTextInputChange}
         />
       </div>
-      <div>
-        <button>Log In</button>
+      <div className='signin-container__form__buttons'>
+        <button className="signin-container__form__buttons__submit">Log In</button>
       </div>
     </form>
   );

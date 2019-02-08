@@ -12,11 +12,18 @@ const LoginForm = props => {
   };
 
   return (
-    <form onSubmit={login}>
-      <h2>Login</h2>
-      <div>
-        <label htmlFor='loginUsername'>Username</label>
+    <form className='signin-container__form' onSubmit={login}>
+      <div className='signin-container__overlay' />
+      <h2 className='signin-container__form__header'>Login</h2>
+      <div className='signin-container__form__field'>
+        <label
+          className='signin-container__form__field__label'
+          htmlFor='loginUsername'
+        >
+          Username:
+        </label>
         <input
+          className='signin-container__form__field__input'
           type='text'
           id='loginUsername'
           name='loginUsername'
@@ -26,9 +33,15 @@ const LoginForm = props => {
           onChange={props.handleTextInputChange}
         />
       </div>
-      <div>
-        <label htmlFor='loginPassword'>Password</label>
+      <div className='signin-container__form__field'>
+        <label
+          className='signin-container__form__field__label'
+          htmlFor='loginPassword'
+        >
+          Password:
+        </label>
         <input
+          className='signin-container__form__field__input'
           type='password'
           id='loginPassword'
           name='loginPassword'
@@ -38,8 +51,8 @@ const LoginForm = props => {
           onChange={props.handleTextInputChange}
         />
       </div>
-      <div>
-        <button>Log In</button>
+      <div className="signin-container__form__buttons">
+        <button className="signin-container__form__buttons__submit">Log In</button>
       </div>
     </form>
   );
