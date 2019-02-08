@@ -1,6 +1,4 @@
 .app-container {
-  // padding: 0 25px;
-
   &__overlay-bg {
     position: fixed;
     top: 0;
@@ -14,61 +12,5 @@
     background-repeat: no-repeat;
     background-size: cover;
     z-index: -1;
-  }
-
-  &__page {
-    &__navbar {
-      position: relative;
-      float: left;
-      height: 100%;
-      min-height: 100vh;
-      width: 15%;
-      text-align: center;
-      padding: 20px 0;
-
-      &__overlay {
-        @include make-overlay($navbar-overlay-base, 0.75, -1);
-      }
-
-      &__heading {
-        font-size: 2.4rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 3.75px;
-        padding-bottom: 15px;
-        border-bottom: 1px solid $navbar-border-color;
-        margin-bottom: 50px;
-      }
-
-      &__menu {
-        &__item {
-          font-size: 2rem;
-          letter-spacing: 1.25px;
-          padding-left: -1.25px;
-          margin: 37.5px 20px;
-
-          .nav-link,
-          .nav-link--active {
-            color: $body-font-color;
-          }
-
-          .nav-link--active {
-            font-weight: bold;
-            text-decoration: none;
-          }
-
-          button {
-            @include colorize-button(
-              $action-button-bg-color,
-              $action-button-font-color
-            );
-
-            cursor: pointer;
-            width: 100px;
-            padding: 10px 0;
-          }
-        }
-      }
-    }
   }
 }

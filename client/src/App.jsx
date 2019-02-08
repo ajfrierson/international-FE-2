@@ -14,7 +14,7 @@ const App = props => {
     <div className='app-container'>
       <div className='app-container__overlay-bg' />
       {props.loggedInUser ? (
-        <div className='app-container__page'>
+        <div>
           <NavBar {...props} />
           <main>
             <Route exact path='/' render={props => <HomePage {...props} />} />
