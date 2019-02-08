@@ -107,8 +107,10 @@ _Can be found in the following container(s): `SingleStudentAddPage`, `SingleStud
 
 ## Reducers
 
-- **registrationReducer**
+### `registrationReducer`
 
-* **loginReducer**
 
-- **studentDataReducer**
+
+### `loginReducer`
+
+### `studentDataReducer`
