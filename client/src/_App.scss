@@ -1,16 +1,72 @@
 .app-container {
-  padding: 25px;
+  // padding: 0 25px;
 
   &__overlay-bg {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-image: url("./assets/overlay-bg.jpg");
+    background-image: url('./assets/overlay-bg.jpg');
+    background-size: 100%;
+    background-position: center;
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     z-index: -1;
+  }
+
+  &__page {
+    &__navbar {
+      position: relative;
+      float: left;
+      min-height: 100vh;
+      text-align: center;
+      padding: 20px 0;
+
+      &__overlay {
+        @include make-overlay($navbar-overlay-base, 0.75, -1);
+      }
+
+      &__heading {
+        font-size: 2.4rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 3.75px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid $navbar-border-color;
+        margin-bottom: 50px;
+      }
+
+      &__menu {
+        &__item {
+          font-size: 2rem;
+          letter-spacing: 1.25px;
+          padding-left: -1.25px;
+          margin: 37.5px 20px;
+
+          .nav-link,
+          .nav-link--active {
+            color: $body-font-color;
+          }
+
+          .nav-link--active {
+            font-weight: bold;
+            text-decoration: none;
+          }
+
+          button {
+            @include colorize-button(
+              $action-button-bg-color,
+              $action-button-font-color
+            );
+
+            cursor: pointer;
+            width: 100px;
+            padding: 10px 0;
+          }
+        }
+      }
+    }
   }
 }

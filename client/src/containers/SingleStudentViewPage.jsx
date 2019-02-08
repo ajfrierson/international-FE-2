@@ -39,7 +39,7 @@ const SingleStudentViewPage = props => {
   const toggleUpdateMode = e => setUpdateMode(!updateMode);
 
   return (
-    <div>
+    <>
       <div>
         <h3>{props.currentViewedStudent && props.currentViewedStudent.name}</h3>
         <button onClick={toggleUpdateMode}>
@@ -62,7 +62,7 @@ const SingleStudentViewPage = props => {
           Delete Student
         </button>
       </div>
-    </div>
+    </>
   );
 };
 
