@@ -27,15 +27,15 @@ const getAuthToken = () => ({
 });
 
 export const getStudents = () => dispatch => {
+  const sortByName = (a, b) =>
+    a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1;
   dispatch({ type: FETCH_STUDENTS_START });
   axios
     .get(`${baseURL}/students`, getAuthToken())
     .then(res =>
       dispatch({
         type: FETCH_STUDENTS_SUCCESS,
-        payload: res.data.sort((a, b) =>
-          a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1
-        )
+        payload: res.data.sort(sortByName)
       })
     )
     .catch(err => dispatch({ type: FETCH_STUDENTS_FAILURE, payload: err }));
@@ -86,7 +86,7 @@ export const populateFormForStudentUpdate = currentViewedStudent => dispatch => 
 };
 
 export const updateStudent = newStudentInfo => dispatch => {
-  const { id } = newStudentInfo.id
+  const { id } = newStudentInfo.id;
   dispatch({ type: UPDATE_STUDENT_START });
   axios
     .put(`${baseURL}/students/${id}`, id, getAuthToken())
