@@ -22,15 +22,14 @@ import {
 
 import { baseURL } from '.';
 
+const getAuthToken = () => ({
+  headers: { Authorization: localStorage.getItem('token') }
+});
+
 export const getStudents = () => dispatch => {
   dispatch({ type: FETCH_STUDENTS_START });
-
-  const headers = {
-    Authorization: localStorage.getItem('token')
-  };
-
   axios
-    .get(`${baseURL}/students`, { headers })
+    .get(`${baseURL}/students`, getAuthToken())
     .then(res =>
       dispatch({
         type: FETCH_STUDENTS_SUCCESS,
@@ -47,13 +46,8 @@ export const clearNewStudentInfo = () => dispatch =>
 
 export const addStudent = newStudent => dispatch => {
   dispatch({ type: ADD_STUDENT_START });
-
-  const headers = {
-    Authorization: localStorage.getItem('token')
-  };
-
   axios
-    .post(`${baseURL}/student`, { ...newStudent }, { headers })
+    .post(`${baseURL}/student`, { ...newStudent }, getAuthToken())
     .then(res => {
       dispatch({ type: ADD_STUDENT_SUCCESS, payload: res.data });
       window.location.href = '/';
@@ -63,13 +57,8 @@ export const addStudent = newStudent => dispatch => {
 
 export const getSingleStudent = id => dispatch => {
   dispatch({ type: FETCH_SINGLE_STUDENT_START });
-
-  const headers = {
-    Authorization: localStorage.getItem('token')
-  };
-
   axios
-    .get(`${baseURL}/students/${+id}`, { headers })
+    .get(`${baseURL}/students/${+id}`, getAuthToken())
     .then(res =>
       dispatch({ type: FETCH_SINGLE_STUDENT_SUCCESS, payload: res.data[0] })
     )
@@ -80,13 +69,8 @@ export const getSingleStudent = id => dispatch => {
 
 export const deleteStudent = id => dispatch => {
   dispatch({ type: DELETE_STUDENT_START });
-
-  const headers = {
-    Authorization: localStorage.getItem('token')
-  };
-
   axios
-    .delete(`${baseURL}/students/${id}`, { headers })
+    .delete(`${baseURL}/students/${id}`, getAuthToken())
     .then(res => {
       dispatch({ type: DELETE_STUDENT_SUCCESS, payload: res.data });
       window.location.href = '/';
@@ -102,15 +86,10 @@ export const populateFormForStudentUpdate = currentViewedStudent => dispatch => 
 };
 
 export const updateStudent = newStudentInfo => dispatch => {
+  const { id } = newStudentInfo.id
   dispatch({ type: UPDATE_STUDENT_START });
-
-  const { id } = newStudentInfo;
-  const headers = {
-    Authorization: localStorage.getItem('token')
-  };
-
   axios
-    .put(`${baseURL}/students/${id}`, newStudentInfo, { headers })
+    .put(`${baseURL}/students/${id}`, id, getAuthToken())
     .then(res =>
       dispatch({
         type: UPDATE_STUDENT_SUCCESS,

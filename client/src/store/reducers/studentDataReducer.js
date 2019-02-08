@@ -145,7 +145,6 @@ const studentDataReducer = (state = initialState, action) => {
         error: `Failed to delete student with ID ${action.id}`
       };
     case POPULATE_FORM_FOR_STUDENT_UPDATE:
-    console.log("POP", action.payload);
       return {
         ...state,
         newStudentName: action.payload.name,
