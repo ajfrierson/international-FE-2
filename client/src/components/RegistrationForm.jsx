@@ -55,7 +55,7 @@ const RegistrationForm = props => {
         />
       </div>
       <div className='signin-container__form__buttons'>
-        <button className="signin-container__form__buttons__submit">Log In</button>
+        <button className="signin-container__form__buttons__submit">Register</button>
       </div>
     </form>
   );
