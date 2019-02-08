@@ -44,9 +44,9 @@ const SingleStudentViewPage = props => {
         <h2 className='view-student-page__header__heading'>
           {props.currentViewedStudent && props.currentViewedStudent.name}
         </h2>
-        <button onClick={toggleUpdateMode}>
+        <span className="toggle-update" onClick={toggleUpdateMode}>
           {updateMode ? 'Cancel Edit' : 'Edit info'}
-        </button>
+        </span>
       </div>
       {updateMode ? (
         <StudentInfoForm
@@ -60,7 +60,7 @@ const SingleStudentViewPage = props => {
         />
       )}
       <div>
-        {!updateMode && <button type='button' onClick={deleteStudent}>
+        {!updateMode && <button className="delete-student-button" type='button' onClick={deleteStudent}>
           Delete Student
         </button>}
       </div>

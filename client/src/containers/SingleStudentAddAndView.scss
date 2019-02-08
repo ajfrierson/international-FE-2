@@ -16,7 +16,8 @@
   margin-left: 17.5%;
 
   &__header {
-    @include make-flex(row, center, center);
+    @include make-flex(column, center, center);
+    margin-bottom: 50px;
 
     &__heading {
       display: inline-block;
@@ -26,13 +27,62 @@
       letter-spacing: 3.2px;
       padding-top: 25px;
       padding-left: -3.2px;
-      margin-bottom: 50px;
+      margin-bottom: 20px;
+    }
+
+    .toggle-update {
+      display: inline-block;
+      font-size: 2rem;
+      letter-spacing: 1px;
+      color: blue;
+      text-decoration: underline;
+      cursor: pointer;
     }
   }
 }
 
+.student-view {
+  position: relative;
+  display: block;
+  width: 50%;
+  padding: 10px 1.25%;
+  margin: 0 auto 50px;
+
+  &__overlay {
+    @include make-overlay($mine-shaft, 1, -1);
+  }
+
+  &__field {
+    margin-bottom: 25px;
+
+    &__label {
+      font-size: 2rem;
+      display: block;
+      font-weight: 800;
+      padding-right: 5px;
+      margin-bottom: 12.5px;
+    }
+
+    &__value {
+      font-size: 1.6rem;
+      font-weight: 200;
+    }
+  }
+}
+
+.delete-student-button {
+  @include colorize-button($danger-button-bg-color, $danger-button-font-color);
+
+  display: inline-block;
+  width: 125px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 10px 0;
+  margin: 0 auto;
+}
+
 .student-form {
-  position: relative; 
+  position: relative;
   display: block;
   width: 50%;
   padding: 10px 1.25%;

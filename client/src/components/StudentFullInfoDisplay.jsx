@@ -3,63 +3,64 @@ import PropTypes from 'prop-types';
 
 const StudentFullInfoDisplay = props => {
   return (
-    <>
-      <div>
-        <span className='singleStudentViewField__label'>Status: </span>
-        <span className='singleStudentViewField__value'>
+    <div className="student-view">
+      <div className='student-view__overlay'/>
+      <div className='student-view__field'>
+        <span className='student-view__field__label'>Status: </span>
+        <span className='student-view__field__value'>
           {props.currentViewedStudent && props.currentViewedStudent.status}
         </span>
       </div>
-      <div>
-        <span className='singleStudentViewField__label'>Age: </span>
-        <span className='singleStudentViewField__value'>
+      <div  className='student-view__field'>
+        <span className='student-view__field__label'>Age: </span>
+        <span className='student-view__field__value'>
           {props.currentViewedStudent && props.currentViewedStudent.age}
         </span>
       </div>
-      <div>
-        <span className='singleStudentViewField__label'>
+      <div className='student-view__field'>
+        <span className='student-view__field__label'>
           Insurance card expiry date:{' '}
         </span>
-        <span className='singleStudentViewField__value'>
+        <span className='student-view__field__value'>
           {props.currentViewedStudent &&
             (props.currentViewedStudent.insuranceCardexpires || 'N/A')}
         </span>
       </div>
-      <div>
-        <span className='singleStudentViewField__label'>
+      <div className='student-view__field'>
+        <span className='student-view__field__label'>
           Birth certificate:{' '}
         </span>
-        <span className='singleStudentViewField__value'>
+        <span className='student-view__field__value'>
           {props.currentViewedStudent &&
             (props.currentViewedStudent.birthcertificate || 'N/A')}
         </span>
       </div>
-      <div>
-        <span className='singleStudentViewField__label'>Special needs: </span>
-        <span className='singleStudentViewField__value'>
+      <div className='student-view__field'>
+        <span className='student-view__field__label'>Special needs: </span>
+        <span className='student-view__field__value'>
           {props.currentViewedStudent &&
             props.currentViewedStudent.specialneeds}
         </span>
       </div>
-      <div>
-        <span className='singleStudentViewField__label'>
+      <div className='student-view__field'>
+        <span className='student-view__field__label'>
           Student's represenative:{' '}
         </span>
-        <span className='singleStudentViewField__value'>
+        <span className='student-view__field__value'>
           {props.currentViewedStudent &&
             props.currentViewedStudent.represenative}
         </span>
       </div>
-      <div>
-        <span className='singleStudentViewField__label'>
+      <div className='student-view__field'>
+        <span className='student-view__field__label'>
           Contact information:{' '}
         </span>
-        <span className='singleStudentViewField__value'>
+        <span className='student-view__field__value'>
           {props.currentViewedStudent &&
             (props.currentViewedStudent.contactinfo || 'N/A')}
         </span>
       </div>
-    </>
+    </div>
   );
 };
 

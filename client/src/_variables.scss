@@ -5,6 +5,7 @@ $lightgray: #d3d3d3;
 $darkgray: #717171;
 $white: #ffffff;
 $mine-shaft: #2c2c2c;
+$warning-red: crimson;
 
 /*  Color assignments */
 
@@ -19,6 +20,9 @@ $signin-overlay-base: $mine-shaft;
 // Action button assignments
 $action-button-bg-color: $mine-shaft;
 $action-button-font-color: $white;
+$danger-button-bg-color: $warning-red;
+$danger-button-font-color: $white;
+
 
 // App component assignments
 
