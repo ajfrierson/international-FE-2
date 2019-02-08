@@ -23,7 +23,8 @@ $tablet-min-size: 500px;
   $flex-wrap: nowrap
 ) {
   display: flex;
-  flex-flow: $flex-direction, $flex-wrap;
+  flex-direction: $flex-direction;
+  flex-wrap: $flex-wrap;
   justify-content: $justify-content;
   align-items: $align-items;
 }
@@ -57,12 +58,12 @@ $tablet-min-size: 500px;
   background-color: $bg-color;
   color: $font-color;
   border: 1.25px solid $font-color;
-  transition: background-color, color, 375ms;
+  transition: background-color 375ms, color 375ms;
 
   &:hover {
     background-color: $font-color;
     font-weight: bold;
     color: $bg-color;
-    transition: all 250ms;
+    transition: background-color 375ms, font-weight 375ms, color 375ms;
   }
 }

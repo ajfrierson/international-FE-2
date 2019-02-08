@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 
-import './containers/PageStyles.css';
-
 import NavBar from './components/NavBar';
 import HomePage from './containers/HomePage';
 import SingleStudentAddPage from './containers/SingleStudentAddPage';

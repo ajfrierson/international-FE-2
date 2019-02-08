@@ -1,9 +1,94 @@
 .home-page {
+  margin-left: 17.5%;
+
   &__heading {
     text-align: center;
     font-size: 3.6rem;
     font-weight: 600;
     letter-spacing: 3.2px;
-    margin: 25px 0 50px;
+    padding-top: 25px;
+    padding-left: -3.2px;
+    margin-bottom: 50px;
+  }
+
+  &__student-grid {
+    @include make-flex(row, space-evenly, center, wrap);
+
+    &__item {
+      position: relative;
+      width: 25%;
+      padding: 10px;
+      border: 1px solid black;
+      margin: 10px;
+
+      &__overlay {
+        @include make-overlay($grid-item-overlay-base, 1, -1);
+      }
+
+      &__heading {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+
+      &__label {
+        font-size: 1.6rem;
+        font-weight: bold;
+        margin-right: 5px;
+      }
+
+      &__value {
+        font-size: 1.6rem;
+      }
+
+      &__link {
+        button {
+          @include colorize-button(
+            $action-button-bg-color,
+            $action-button-font-color
+          );
+
+          width: 100px;
+          font-weight: bold;
+          cursor: pointer;
+          padding: 5px 0;
+          margin-top: 25px;
+        }
+      }
+    }
+  }
+
+  &__buttons {
+    @include make-flex(row, center, center);
+
+    margin-top: 50px;
+
+    %page-nav {
+      width: 125px;
+      font-weight: bold;
+      padding: 10px 0;
+      margin: 0 1%;
+    }
+
+    &__page-nav {
+      @extend %page-nav;
+
+      @include colorize-button(
+        $action-button-bg-color,
+        $action-button-font-color
+      );
+
+      cursor: pointer;
+    }
+
+    &__page-nav--disabled {
+      @extend %page-nav;
+
+      background-color: $action-button-bg-color;
+      color: $action-button-font-color;
+      filter: brightness(50%);
+      border: none;
+      transition: none;
+    }
   }
 }

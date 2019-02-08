@@ -21,7 +21,7 @@ import {
 
 const initialState = {
   students: [],
-  studentsPerPage: 2,
+  studentsPerPage: 6,
   maxPageNumber: 0,
   currentViewedStudent: null,
   newStudentName: '',

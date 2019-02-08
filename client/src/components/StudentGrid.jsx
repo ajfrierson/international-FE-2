@@ -16,14 +16,18 @@ const StudentGrid = props => {
     props.history.push(`/students/${pageNumber}`);
   }, [pageNumber]);
 
+  const isPrevPageEnabled = pageNumber > 1;
+  const isNextPageEnabled = pageNumber < props.maxPageNumber;
+
   const prevPage = e => {
-    const newPageNumber = pageNumber > 1 ? +pageNumber - 1 : pageNumber;
+    const newPageNumber = isPrevPageEnabled ? +pageNumber - 1 : pageNumber;
     setPageNumber(newPageNumber);
   };
 
   const nextPage = e => {
-    const newPageNumber =
-      pageNumber < props.maxPageNumber ? +pageNumber + 1 : pageNumber;
+    const newPageNumber = isNextPageEnabled
+      ? +pageNumber + 1
+      : pageNumber;
     setPageNumber(newPageNumber);
   };
 
@@ -32,7 +36,7 @@ const StudentGrid = props => {
 
   return (
     <>
-      <div className='studentsGrid'>
+      <div className='home-page__student-grid'>
         {props.students &&
           props.students
             .slice(fromItem, toItem)
@@ -40,11 +44,27 @@ const StudentGrid = props => {
               <StudentGridItem key={student.id} student={student} />
             ))}
       </div>
-      <div>
-        <button type='button' onClick={prevPage}>
+      <div className='home-page__buttons'>
+        <button
+          className={
+            isPrevPageEnabled
+              ? 'home-page__buttons__page-nav'
+              : 'home-page__buttons__page-nav--disabled'
+          }
+          type='button'
+          onClick={prevPage}
+        >
           Previous Page
         </button>
-        <button type='button' onClick={nextPage}>
+        <button
+          className={
+            isNextPageEnabled
+              ? 'home-page__buttons__page-nav'
+              : 'home-page__buttons__page-nav--disabled'
+          }
+          type='button'
+          onClick={nextPage}
+        >
           Next Page
         </button>
       </div>
