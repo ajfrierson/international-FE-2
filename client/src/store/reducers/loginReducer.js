@@ -1,5 +1,6 @@
 import {
   HANDLE_TEXT_INPUT_CHANGE,
+  CLEAR_LOGIN_INPUTS,
   LOGIN_START,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
@@ -20,6 +21,12 @@ const loginReducer = (state = initialState, action) => {
       return {
         ...state,
         [action.payload.name]: action.payload.value
+      };
+    case CLEAR_LOGIN_INPUTS:
+      return {
+        ...state,
+        loginUsername: "",
+        loginPassword: ""
       };
     case LOGIN_START:
       return {
@@ -43,7 +50,7 @@ const loginReducer = (state = initialState, action) => {
         error: 'Login failure'
       };
     case LOGOUT:
-      localStorage.setItem('token', "");
+      localStorage.setItem('token', '');
       return {
         ...state,
         loggedInUser: null

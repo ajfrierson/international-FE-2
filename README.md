@@ -63,6 +63,8 @@ Components that are displayed include:
 
 Contains the actual form for entering login information, with a button for logging in.
 
+The React Hooks API is used to clear the form inputs on load.
+
 _Can be found in the following container(s): `SignInPage`_
 
 ### `NameHeader.jsx`
@@ -80,6 +82,8 @@ _Conditionally rendered in `App.jsx` (based on login status)._
 ### `RegistrationForm.jsx`
 
 Contains the actual form for entering registration information with a button for submitting the new user's information.
+
+The React Hooks API is used to clear the form inputs on load.
 
 _Can be found in the following container(s): `SignInPage`_
 

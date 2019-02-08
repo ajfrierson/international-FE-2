@@ -1,5 +1,6 @@
 import {
   HANDLE_TEXT_INPUT_CHANGE,
+  CLEAR_REGISTRATION_INPUTS,
   REGISTER_START,
   REGISTER_SUCCESS,
   REGISTER_FAILURE
@@ -18,6 +19,12 @@ const registrationReducer = (state = initialState, action) => {
       return {
         ...state,
         [action.payload.name]: action.payload.value
+      };
+    case CLEAR_REGISTRATION_INPUTS:
+      return {
+        ...state,
+        registrationUsername: "",
+        registrationPassword: ""
       };
     case REGISTER_START:
       return {

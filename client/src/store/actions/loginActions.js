@@ -1,8 +1,17 @@
 import axios from 'axios';
 
-import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from './types';
+import {
+  LOGIN_START,
+  CLEAR_LOGIN_INPUTS,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  LOGOUT
+} from './types';
 
 import { baseURL } from '.';
+
+export const clearLoginInputs = () => dispatch =>
+  dispatch({ type: CLEAR_LOGIN_INPUTS });
 
 export const login = (username, password) => dispatch => {
   dispatch({ type: LOGIN_START });

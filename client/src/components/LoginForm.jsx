@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { handleTextInputChange } from '../store/actions';
-import { login } from '../store/actions/loginActions';
+import { clearLoginInputs, login } from '../store/actions/loginActions';
 
 const LoginForm = props => {
+  useEffect(() => props.clearLoginInputs, []);
+
   const login = e => {
     e.preventDefault();
     props.login(props.loginUsername, props.loginPassword);
@@ -51,8 +53,10 @@ const LoginForm = props => {
           onChange={props.handleTextInputChange}
         />
       </div>
-      <div className="signin-container__form__buttons">
-        <button className="signin-container__form__buttons__submit">Log In</button>
+      <div className='signin-container__form__buttons'>
+        <button className='signin-container__form__buttons__submit'>
+          Log In
+        </button>
       </div>
     </form>
   );
@@ -62,6 +66,7 @@ LoginForm.propTypes = {
   loginUsername: PropTypes.string.isRequired,
   loginPassword: PropTypes.string.isRequired,
   handleTextInputChange: PropTypes.func.isRequired,
+  clearLoginInputs: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired
 };
 
@@ -76,6 +81,7 @@ export default connect(
   mapStateToProps,
   {
     handleTextInputChange,
+    clearLoginInputs,
     login
   }
 )(LoginForm);

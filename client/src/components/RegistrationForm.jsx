@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { handleTextInputChange } from '../store/actions';
-import { registerNewUser } from '../store/actions/registrationActions';
+import { clearRegistrationInputs, registerNewUser } from '../store/actions/registrationActions';
 
 const RegistrationForm = props => {
+  useEffect(() => props.clearRegistrationInputs, [])
+
   const registerNewUser = e => {
     e.preventDefault();
     props.registerNewUser(
@@ -79,6 +81,7 @@ export default connect(
   mapStateToProps,
   {
     handleTextInputChange,
+    clearRegistrationInputs,
     registerNewUser
   }
 )(RegistrationForm);

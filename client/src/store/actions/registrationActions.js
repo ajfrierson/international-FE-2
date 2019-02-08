@@ -1,8 +1,16 @@
 import axios from 'axios';
 
-import { REGISTER_START, REGISTER_SUCCESS, REGISTER_FAILURE } from './types';
+import {
+  CLEAR_REGISTRATION_INPUTS,
+  REGISTER_START,
+  REGISTER_SUCCESS,
+  REGISTER_FAILURE
+} from './types';
 
 import { baseURL } from '.';
+
+export const clearRegistrationInputs = () => dispatch =>
+  dispatch({ type: CLEAR_REGISTRATION_INPUTS });
 
 export const registerNewUser = (username, password) => dispatch => {
   dispatch({ type: REGISTER_START });
