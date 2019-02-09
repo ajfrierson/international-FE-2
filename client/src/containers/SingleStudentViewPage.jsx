@@ -12,6 +12,8 @@ import StudentInfoForm from '../components/StudentInfoForm';
 import StudentFullInfoDisplay from '../components/StudentFullInfoDisplay';
 
 const SingleStudentViewPage = props => {
+  document.title = `${props.currentViewedStudent && props.currentViewedStudent.name.toUpperCase()} - Educell Student Records`;
+
   const [updateMode, setUpdateMode] = useState(false);
 
   useEffect(() => {
@@ -40,11 +42,11 @@ const SingleStudentViewPage = props => {
 
   return (
     <div className='view-student-page'>
-      <div className="view-student-page__header">
+      <div className='view-student-page__header'>
         <h2 className='view-student-page__header__heading'>
           {props.currentViewedStudent && props.currentViewedStudent.name}
         </h2>
-        <span className="toggle-update" onClick={toggleUpdateMode}>
+        <span className='toggle-update' onClick={toggleUpdateMode}>
           {updateMode ? 'Cancel Edit' : 'Edit info'}
         </span>
       </div>
@@ -60,9 +62,15 @@ const SingleStudentViewPage = props => {
         />
       )}
       <div>
-        {!updateMode && <button className="delete-student-button" type='button' onClick={deleteStudent}>
-          Delete Student
-        </button>}
+        {!updateMode && (
+          <button
+            className='delete-student-button'
+            type='button'
+            onClick={deleteStudent}
+          >
+            Delete Student
+          </button>
+        )}
       </div>
     </div>
   );

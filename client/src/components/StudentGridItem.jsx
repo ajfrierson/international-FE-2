@@ -14,7 +14,7 @@ const StudentGridItem = props => {
         {props.student.status}
       </span>
       <div className='home-page__student-grid__item__link'>
-        <NavLink to={`/student/${props.student.id}`}>
+        <NavLink to={`/student/${props.student.id}/view`}>
           <button type='button'>View All Info</button>
         </NavLink>
       </div>

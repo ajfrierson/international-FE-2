@@ -24,7 +24,12 @@ const App = props => {
               render={props => <HomePage {...props} />}
             />
             <Route
-              path='/students/:pageNum'
+              exact
+              path='/students/page'
+              render={props => <HomePage {...props} />}
+            />
+            <Route
+              path='/students/page/:pageNum'
               render={props => <HomePage {...props} />}
             />
             <Route
