@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 
 const StudentFullInfoDisplay = props => {
   return (
-    <div className="student-view">
-      <div className='student-view__overlay'/>
+    <div className='student-view'>
+      <div className='student-view__overlay' />
       <div className='student-view__field'>
         <span className='student-view__field__label'>Status: </span>
         <span className='student-view__field__value'>
           {props.currentViewedStudent && props.currentViewedStudent.status}
         </span>
       </div>
-      <div  className='student-view__field'>
+      <div className='student-view__field'>
         <span className='student-view__field__label'>Age: </span>
         <span className='student-view__field__value'>
           {props.currentViewedStudent && props.currentViewedStudent.age}
@@ -27,9 +27,7 @@ const StudentFullInfoDisplay = props => {
         </span>
       </div>
       <div className='student-view__field'>
-        <span className='student-view__field__label'>
-          Birth certificate:{' '}
-        </span>
+        <span className='student-view__field__label'>Birth certificate: </span>
         <span className='student-view__field__value'>
           {props.currentViewedStudent &&
             (props.currentViewedStudent.birthcertificate || 'N/A')}

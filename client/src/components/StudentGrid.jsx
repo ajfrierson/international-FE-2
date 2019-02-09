@@ -13,7 +13,7 @@ const StudentGrid = props => {
 
   useEffect(() => {
     props.getStudents();
-    props.history.push(`/students/${pageNumber}`);
+    props.history.push(`/students/page/${pageNumber}`);
   }, [pageNumber]);
 
   const isPrevPageEnabled = pageNumber > 1;

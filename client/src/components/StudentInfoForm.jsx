@@ -40,6 +40,7 @@ const StudentInfoForm = props => {
       contactInfo: props.newStudentContactInfo
     });
     props.toggleUpdateMode && props.toggleUpdateMode();
+    props.history.push(`/student/${props.id}/view`);
   };
 
   let submitButtonText, submitButtonAction;
